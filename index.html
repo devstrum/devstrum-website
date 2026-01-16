@@ -123,6 +123,7 @@
             z-index: 1000;
             padding: 16px 0;
             background: rgba(255,255,255,0.9);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid transparent;
             transition: all 0.3s ease;
@@ -136,6 +137,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            overflow: visible;
         }
 
         .logo {
@@ -217,6 +219,7 @@
         }
 
         .btn:active {
+            -webkit-transform: scale(0.96);
             transform: scale(0.96);
             box-shadow: none;
         }
@@ -1163,8 +1166,10 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 8px;
+            padding: 12px;
             z-index: 1001;
+            position: relative;
+            overflow: visible;
         }
 
         .mobile-menu-btn span {
@@ -1177,7 +1182,8 @@
         }
 
         .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
+            -webkit-transform: rotate(45deg) translate(5px, 5px);
+            transform: rotate(45deg) translate(5px, 5px);
         }
 
         .mobile-menu-btn.active span:nth-child(2) {
@@ -1185,7 +1191,8 @@
         }
 
         .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
+            -webkit-transform: rotate(-45deg) translate(5px, -5px);
+            transform: rotate(-45deg) translate(5px, -5px);
         }
 
         /* Mobile Menu Overlay */
@@ -1197,16 +1204,20 @@
             bottom: 0;
             background: var(--white);
             z-index: 999;
-            display: none;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 32px;
             padding: 80px 24px 40px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .mobile-menu.active {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
         }
 
         .mobile-menu a {
@@ -1609,10 +1620,34 @@
         /* Page Visibility */
         .page {
             display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .page.active {
             display: block;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
@@ -1642,7 +1677,7 @@
                 <a href="#contact" class="btn btn-primary btn-small" onclick="showPage('about')">Contact Us</a>
             </div>
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1652,9 +1687,9 @@
 
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#" onclick="showPage('home'); toggleMobileMenu();">Home</a>
-        <a href="#" onclick="showPage('services'); toggleMobileMenu();">Services</a>
-        <a href="#" onclick="showPage('about'); toggleMobileMenu();">About</a>
+        <a href="javascript:void(0)" onclick="showPage('home');">Home</a>
+        <a href="javascript:void(0)" onclick="showPage('services');">Services</a>
+        <a href="javascript:void(0)" onclick="showPage('about');">About</a>
         <a href="https://cal.com/sumanth-meenakshi-orhbil/30min" target="_blank" class="btn btn-primary btn-large">Book an Audit</a>
     </div>
 
@@ -2516,14 +2551,21 @@
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const isOpen = mobileMenu.classList.contains('active');
+
             mobileMenu.classList.toggle('active');
             mobileMenuBtn.classList.toggle('active');
-            
-            // Prevent body scroll when menu is open
-            if (mobileMenu.classList.contains('active')) {
+
+            // Update aria-expanded for accessibility
+            mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
+
+            // Prevent body scroll when menu is open (fix for iOS Safari)
+            if (!isOpen) {
                 document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
             } else {
                 document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
             }
         }
 
@@ -2535,31 +2577,76 @@
             // Close mobile menu if open
             const mobileMenu = document.getElementById('mobileMenu');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            if (mobileMenu.classList.contains('active')) {
+            const menuWasOpen = mobileMenu.classList.contains('active');
+
+            if (menuWasOpen) {
                 mobileMenu.classList.remove('active');
                 mobileMenuBtn.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
             }
-            
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            document.getElementById('page-' + pageName).classList.add('active');
-            
-            // Update nav active states
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-            });
-            const navLink = document.getElementById('nav-' + pageName);
-            if (navLink) {
-                navLink.classList.add('active');
+
+            // Function to switch pages
+            const switchPage = () => {
+                // Get current active page
+                const currentPage = document.querySelector('.page.active');
+                const targetPage = document.getElementById('page-' + pageName);
+
+                // If already on the target page, just scroll
+                if (currentPage === targetPage) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                // Fade out current page first
+                if (currentPage) {
+                    currentPage.style.opacity = '0';
+                    setTimeout(() => {
+                        // Hide all pages
+                        document.querySelectorAll('.page').forEach(page => {
+                            page.classList.remove('active');
+                            page.style.opacity = '';
+                        });
+
+                        // Show selected page
+                        targetPage.classList.add('active');
+
+                        // Update nav active states
+                        document.querySelectorAll('.nav-links a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        const navLink = document.getElementById('nav-' + pageName);
+                        if (navLink) {
+                            navLink.classList.add('active');
+                        }
+
+                        // Scroll to top smoothly
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 150);
+                } else {
+                    // No current page, just show target
+                    targetPage.classList.add('active');
+
+                    // Update nav active states
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    const navLink = document.getElementById('nav-' + pageName);
+                    if (navLink) {
+                        navLink.classList.add('active');
+                    }
+
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            };
+
+            // If menu was open, delay page switch to allow close animation
+            if (menuWasOpen) {
+                setTimeout(switchPage, 300);
+            } else {
+                switchPage();
             }
-            
-            // Scroll to top smoothly
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Nav scroll effect
