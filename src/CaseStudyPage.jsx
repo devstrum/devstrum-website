@@ -1,4 +1,4 @@
-import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, FaviconOrInitials, PAD_X } from './theme.jsx';
+import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, PAD_X, useIsMobile } from './theme.jsx';
 
 // CaseStudyPage - Devstrum Work page (centered): what we've built + work by client/vertical
 // Real engagement types described by vertical; no fabricated metrics.
@@ -35,13 +35,6 @@ const CLIENT_WORK = [
   },
 ];
 
-// Voice/WhatsApp deployments via our Ringg partnership
-const RINGG_PROJECTS = [
-  { name: 'noon', domain: 'noon.com' },
-  { name: 'Tabby', domain: 'tabby.ai' },
-  { name: 'Tamara', domain: 'tamara.co' },
-];
-
 // Backer's brand & production work (House of Shafaq) - linked out to houseofshafaq.com
 const HOS_PROJECTS = [
   ['Mokobara Ads', 'Mid-level ads', 'https://www.houseofshafaq.com/projects/mokobara-ads'],
@@ -56,6 +49,7 @@ const HOS_PROJECTS = [
 
 const CaseStudyPage = () => {
   const { bg, ink, accent, muted, rule } = THEME;
+  const isMobile = useIsMobile();
   return (
     <div style={{ background: bg, color: ink, fontFamily: '"Geist Mono", monospace', minHeight: '100%' }} data-screen-label="Work">
       <SiteNav active="work" />
@@ -94,7 +88,7 @@ const CaseStudyPage = () => {
         <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, color: muted, maxWidth: 620, margin: '0 auto 56px' }}>
           A snapshot of the teams we've shipped for across four continents.
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto' }}>
           {CLIENT_WORK.map((c) => (
             <div key={c.vertical} style={{ background: bg, padding: 32 }}>
               <div style={{ fontSize: 10, color: accent, letterSpacing: '.2em', marginBottom: 12 }}>{c.vertical}</div>
@@ -103,20 +97,6 @@ const CaseStudyPage = () => {
               <ul style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.9, color: muted, padding: 0, listStyle: 'none', margin: 0 }}>
                 {c.built.map(b => <li key={b}>{b}</li>)}
               </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Voice & WhatsApp via Ringg */}
-      <section style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
-        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>VOICE &amp; WHATSAPP · VIA RINGG</div>
-        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, color: muted, maxWidth: 560, margin: '0 auto 24px' }}>Our preferred voice AI partner Ringg powers deployments for names like:</p>
-        <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', justifyContent: 'center' }}>
-          {RINGG_PROJECTS.map(c => (
-            <div key={c.name} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <FaviconOrInitials name={c.name} domain={c.domain} size={22} />
-              <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 16, color: ink }}>{c.name}</span>
             </div>
           ))}
         </div>

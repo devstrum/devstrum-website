@@ -322,13 +322,6 @@ const TrustedByBar = ({ label = 'CLIENTS ACROSS UK · UAE · INDIA · AUSTRALIA'
   );
 };
 
-// Ringg's success stories - shown once, inside the Partners strip
-const RINGG_SUCCESS = [
-  { name: 'noon', domain: 'noon.com', href: 'https://www.noon.com' },
-  { name: 'Tabby', domain: 'tabby.ai', href: 'https://tabby.ai' },
-  { name: 'Tamara', domain: 'tamara.co', href: 'https://tamara.co' },
-];
-
 // Preferred-partner callout (Ringg + Meta) - use ONCE per page.
 const PartnersStrip = ({ center = true }) => {
   const { ink, accent, muted, rule, bg } = THEME;
@@ -344,18 +337,9 @@ const PartnersStrip = ({ center = true }) => {
             <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 600, letterSpacing: '-0.03em' }}>Ringg</span>
             <span style={{ fontSize: 9, color: accent, letterSpacing: '.1em', border: `1px solid ${accent}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace' }}>VOICE AI</span>
           </div>
-          <p style={{ ...pStyle, margin: `0 ${center ? 'auto' : '0'} 16px` }}>
+          <p style={{ ...pStyle, margin: 0 }}>
             Our preferred voice AI infrastructure. We're model &amp; vendor agnostic - Ringg is what we curate and select for most conversational deployments.
           </p>
-          <div style={{ fontSize: 10, color: muted, letterSpacing: '.15em', marginBottom: 10 }}>SUCCESS STORIES · BUILT ON RINGG</div>
-          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', justifyContent: rowJustify }}>
-            {RINGG_SUCCESS.map(c => (
-              <a key={c.name} href={c.href} target="_blank" rel="noopener" className="ds-success-link" style={{ display: 'flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}>
-                <FaviconOrInitials name={c.name} domain={c.domain} size={16} />
-                <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 13, color: THEME.ink }}>{c.name}</span>
-              </a>
-            ))}
-          </div>
         </div>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14, flexWrap: 'wrap', justifyContent: rowJustify }}>
@@ -372,4 +356,4 @@ const PartnersStrip = ({ center = true }) => {
   );
 };
 
-export { THEME, gridBg, CornerTicks, DevstrumLogo, SiteNav, SiteFooter, NAV_LINKS, CONTACT, CONTACT_EMAIL, BOOKING_URL, IntegrationsBanner, TrustedByBar, PartnersStrip, FaviconOrInitials, TRUSTED_BY, RINGG_SUCCESS, INTEGRATIONS, PAD_X, useIsMobile, useCopyEmail };
+export { THEME, gridBg, CornerTicks, DevstrumLogo, SiteNav, SiteFooter, NAV_LINKS, CONTACT, CONTACT_EMAIL, BOOKING_URL, IntegrationsBanner, TrustedByBar, PartnersStrip, FaviconOrInitials, TRUSTED_BY, INTEGRATIONS, PAD_X, useIsMobile, useCopyEmail };

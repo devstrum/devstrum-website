@@ -1,5 +1,5 @@
 import React from 'react';
-import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, IntegrationsBanner, FaviconOrInitials, RINGG_SUCCESS, PAD_X, useIsMobile } from './theme.jsx';
+import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, IntegrationsBanner, FaviconOrInitials, PAD_X, useIsMobile } from './theme.jsx';
 
 // AboutPage - Devstrum About/Team page
 // Depends on: theme.jsx
@@ -12,7 +12,7 @@ const PRINCIPLES = [
 ];
 
 const PARTNERS = [
-  { name: 'Ringg', domain: 'ringg.ai', tag: 'PREFERRED · VOICE AI', desc: 'Our default stack for any conversational deployment - inbound, outbound, IVR replacement.', success: true },
+  { name: 'Ringg', domain: 'ringg.ai', tag: 'PREFERRED · VOICE AI', desc: 'Our default stack for any conversational deployment - inbound, outbound, IVR replacement.' },
   { name: 'Meta', domain: 'about.meta.com', tag: 'PREFERRED · WHATSAPP BSP', desc: 'Business Solution Provider partnership backing every WhatsApp agent we deploy.' },
 ];
 
@@ -75,20 +75,7 @@ const AboutPage = () => {
                 <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 20, fontWeight: 600, letterSpacing: '-0.02em' }}>{p.name}</span>
               </div>
               <div style={{ fontSize: 9, color: accent, letterSpacing: '.12em', marginBottom: 10 }}>{p.tag}</div>
-              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, margin: p.success ? '0 0 16px' : 0 }}>{p.desc}</p>
-              {p.success && (
-                <React.Fragment>
-                  <div style={{ fontSize: 9, color: muted, letterSpacing: '.12em', marginBottom: 8 }}>SUCCESS STORIES</div>
-                  <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center' }}>
-                    {RINGG_SUCCESS.map(c => (
-                      <a key={c.name} href={c.href} target="_blank" rel="noopener" className="ds-success-link" style={{ display: 'flex', alignItems: 'center', gap: 6, textDecoration: 'none', border: `1px solid ${rule}`, borderRadius: 3, padding: '3px 10px' }}>
-                        <FaviconOrInitials name={c.name} domain={c.domain} size={15} />
-                        <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 13, color: ink }}>{c.name}</span>
-                      </a>
-                    ))}
-                  </div>
-                </React.Fragment>
-              )}
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, margin: 0 }}>{p.desc}</p>
             </div>
           ))}
         </div>
@@ -98,7 +85,7 @@ const AboutPage = () => {
       <section style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>HOW WE OPERATE</div>
         <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 56px' }}>Four principles.</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 900, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 900, margin: '0 auto' }}>
           {PRINCIPLES.map(([n, t, d]) => (
             <div key={n} style={{ background: bg, padding: 32 }}>
               <div style={{ fontSize: 10, color: accent, letterSpacing: '.15em', marginBottom: 10 }}>{n}</div>
