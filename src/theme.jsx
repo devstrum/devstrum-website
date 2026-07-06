@@ -82,7 +82,7 @@ const DevstrumLogo = ({ height = 22, onDark = false, accent = THEME.accent }) =>
 const CONTACT = {
   entity: 'Devstrum LLP · India',
   email: 'sumanth@devstrum.com',
-  phone: '+64 22 199 74445',
+  phone: '+91 99012 65333 · +64 22 199 74445',
   website: 'devstrum.com',
 };
 
