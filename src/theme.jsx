@@ -94,11 +94,12 @@ const NAV_LINKS = [
 ];
 
 const CONTACT_EMAIL = 'sumanth@devstrum.com';
+// "Book a free audit" CTAs open this Google Calendar appointment page in a new tab.
+const BOOKING_URL = 'https://calendar.app.google/oUsGs4GDQw5cNn4E8';
 
 const SiteNav = ({ active }) => {
   const isMobile = useIsMobile();
   const [open, setOpen] = React.useState(false);
-  const [copied, copyEmail] = useCopyEmail(CONTACT_EMAIL);
   React.useEffect(() => { if (!isMobile) setOpen(false); }, [isMobile]);
 
   return (
@@ -137,9 +138,9 @@ const SiteNav = ({ active }) => {
             </a>
           ))}
         </nav>
-        <a href={`mailto:${CONTACT_EMAIL}`} onClick={copyEmail} style={{ textDecoration: 'none' }}>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
           <button style={{ padding: '8px 16px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 11, fontWeight: 600, letterSpacing: '.15em', fontFamily: 'inherit', cursor: 'pointer', whiteSpace: 'nowrap' }}>
-            {copied ? 'EMAIL COPIED ✓' : 'BOOK AUDIT'}
+            BOOK AUDIT
           </button>
         </a>
       </React.Fragment>
@@ -147,9 +148,9 @@ const SiteNav = ({ active }) => {
 
     {isMobile && (
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-        <a href={`mailto:${CONTACT_EMAIL}`} onClick={copyEmail} style={{ textDecoration: 'none', flexShrink: 0 }}>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none', flexShrink: 0 }}>
           <button style={{ padding: '8px 12px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 10, fontWeight: 600, letterSpacing: '.1em', fontFamily: 'inherit', cursor: 'pointer', whiteSpace: 'nowrap' }}>
-            {copied ? 'COPIED ✓' : 'BOOK AUDIT'}
+            BOOK AUDIT
           </button>
         </a>
         <button
@@ -181,9 +182,9 @@ const SiteNav = ({ active }) => {
           {l.label}
         </a>
       ))}
-      <a href={`mailto:${CONTACT_EMAIL}`} onClick={copyEmail} style={{ textDecoration: 'none', marginTop: 16 }}>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none', marginTop: 16 }}>
         <button style={{ width: '100%', padding: '14px 16px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.15em', fontFamily: 'inherit', cursor: 'pointer' }}>
-          {copied ? 'EMAIL COPIED ✓' : 'BOOK AUDIT'}
+          BOOK AUDIT
         </button>
       </a>
     </nav>
@@ -193,15 +194,14 @@ const SiteNav = ({ active }) => {
 };
 
 const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.', center = true }) => {
-  const [copied, copyEmail] = useCopyEmail(CONTACT_EMAIL);
   return (
   <section id="contact" style={{ padding: `clamp(56px, 14vw, 120px) ${PAD_X}`, borderTop: `1px solid ${THEME.ink}`, textAlign: center ? 'center' : 'left' }}>
     <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(38px, 9vw, 88px)', fontWeight: 600, letterSpacing: '-0.05em', margin: '0 0 32px', lineHeight: 1 }}>
       {heading}<br /><span style={{ color: THEME.accent }}>{headingAccent}</span>
     </h2>
     <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap', justifyContent: center ? 'center' : 'flex-start' }}>
-      <a href={`mailto:${CONTACT_EMAIL}`} onClick={copyEmail} style={{ textDecoration: 'none' }}>
-        <button style={{ padding: '18px 28px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.2em', fontFamily: 'inherit', cursor: 'pointer' }}>{copied ? 'EMAIL COPIED ✓' : 'BOOK A FREE AUDIT →'}</button>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
+        <button style={{ padding: '18px 28px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.2em', fontFamily: 'inherit', cursor: 'pointer' }}>BOOK A FREE AUDIT →</button>
       </a>
       <span style={{ fontSize: 13, color: THEME.muted, fontFamily: '"Geist Mono", monospace' }}>
         or email <span style={{ color: THEME.ink, borderBottom: `1px solid ${THEME.accent}` }}>{CONTACT_EMAIL}</span>
@@ -372,4 +372,4 @@ const PartnersStrip = ({ center = true }) => {
   );
 };
 
-export { THEME, gridBg, CornerTicks, DevstrumLogo, SiteNav, SiteFooter, NAV_LINKS, CONTACT, CONTACT_EMAIL, IntegrationsBanner, TrustedByBar, PartnersStrip, FaviconOrInitials, TRUSTED_BY, RINGG_SUCCESS, INTEGRATIONS, PAD_X, useIsMobile, useCopyEmail };
+export { THEME, gridBg, CornerTicks, DevstrumLogo, SiteNav, SiteFooter, NAV_LINKS, CONTACT, CONTACT_EMAIL, BOOKING_URL, IntegrationsBanner, TrustedByBar, PartnersStrip, FaviconOrInitials, TRUSTED_BY, RINGG_SUCCESS, INTEGRATIONS, PAD_X, useIsMobile, useCopyEmail };
