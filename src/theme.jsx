@@ -80,10 +80,10 @@ const DevstrumLogo = ({ height = 22, onDark = false, accent = THEME.accent }) =>
 };
 
 const CONTACT = {
-  address: 'Devstrum LLP · India — [add registered office]',
+  entity: 'Devstrum LLP · India',
   email: 'sumanth@devstrum.com',
-  phone: '+91 [add number]',
-  hours: 'Monday – Friday · 10am – 6pm IST',
+  phone: '+64 22 199 74445',
+  website: 'devstrum.com',
 };
 
 const NAV_LINKS = [
@@ -192,14 +192,14 @@ const SiteNav = ({ active }) => {
   );
 };
 
-const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.' }) => {
+const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.', center = true }) => {
   const [copied, copyEmail] = useCopyEmail(CONTACT_EMAIL);
   return (
-  <section id="contact" style={{ padding: `clamp(56px, 14vw, 120px) ${PAD_X}`, borderTop: `1px solid ${THEME.ink}` }}>
+  <section id="contact" style={{ padding: `clamp(56px, 14vw, 120px) ${PAD_X}`, borderTop: `1px solid ${THEME.ink}`, textAlign: center ? 'center' : 'left' }}>
     <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(38px, 9vw, 88px)', fontWeight: 600, letterSpacing: '-0.05em', margin: '0 0 32px', lineHeight: 1 }}>
       {heading}<br /><span style={{ color: THEME.accent }}>{headingAccent}</span>
     </h2>
-    <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+    <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap', justifyContent: center ? 'center' : 'flex-start' }}>
       <a href={`mailto:${CONTACT_EMAIL}`} onClick={copyEmail} style={{ textDecoration: 'none' }}>
         <button style={{ padding: '18px 28px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.2em', fontFamily: 'inherit', cursor: 'pointer' }}>{copied ? 'EMAIL COPIED ✓' : 'BOOK A FREE AUDIT →'}</button>
       </a>
@@ -207,14 +207,14 @@ const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.
         or email <span style={{ color: THEME.ink, borderBottom: `1px solid ${THEME.accent}` }}>{CONTACT_EMAIL}</span>
       </span>
     </div>
-    <div style={{ marginTop: 56, borderLeft: `2px solid ${THEME.accent}`, paddingLeft: 20, maxWidth: 640 }}>
+    <div style={{ marginTop: 56, borderLeft: center ? 'none' : `2px solid ${THEME.accent}`, paddingLeft: center ? 0 : 20, maxWidth: 640, marginLeft: center ? 'auto' : 0, marginRight: center ? 'auto' : 0 }}>
       <p style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.45, margin: '0 0 10px', fontStyle: 'italic' }}>
         "Every founder in my network asks me who's building their AI. Now I have an answer — Devstrum."
       </p>
       <div style={{ fontSize: 12, color: THEME.muted, fontFamily: 'Inter, sans-serif' }}>Saad Mohammed · Founder, House of Shafaq · Devstrum supporter &amp; client</div>
     </div>
     <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 24, paddingTop: 32, borderTop: `1px solid ${THEME.rule}` }}>
-      {[['ADDRESS', CONTACT.address], ['EMAIL', CONTACT.email], ['PHONE', CONTACT.phone], ['HOURS', CONTACT.hours]].map(([l, v]) => (
+      {[['DEVSTRUM', CONTACT.entity], ['EMAIL', CONTACT.email], ['PHONE', CONTACT.phone], ['WEBSITE', CONTACT.website]].map(([l, v]) => (
         <div key={l}>
           <div style={{ fontSize: 10, color: THEME.accent, letterSpacing: '.15em', marginBottom: 6, fontFamily: '"Geist Mono", monospace' }}>{l}</div>
           <div style={{ fontSize: 13, color: THEME.ink, fontFamily: 'Inter, sans-serif', lineHeight: 1.4 }}>{v}</div>
@@ -271,10 +271,10 @@ const INTEGRATIONS = [
   { name: 'Notion', domain: 'notion.so' },
 ];
 
-const IntegrationsBanner = ({ label = 'INTEGRATES WITH THE TOOLS YOU ALREADY RUN' }) => {
+const IntegrationsBanner = ({ label = 'INTEGRATES WITH THE TOOLS YOU ALREADY RUN', center = true }) => {
   const isMobile = useIsMobile();
   return (
-  <div style={{ borderTop: `1px solid ${THEME.rule}`, borderBottom: `1px solid ${THEME.rule}`, padding: `18px ${PAD_X}`, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'stretch' : 'center', gap: isMobile ? 12 : 40 }}>
+  <div style={{ borderTop: `1px solid ${THEME.rule}`, borderBottom: `1px solid ${THEME.rule}`, padding: `18px ${PAD_X}`, display: 'flex', flexDirection: (isMobile || center) ? 'column' : 'row', alignItems: 'center', gap: isMobile ? 12 : (center ? 14 : 40), textAlign: center ? 'center' : 'left' }}>
     <span style={{ fontSize: 10, color: THEME.muted, letterSpacing: '.2em', fontFamily: '"Geist Mono", monospace', whiteSpace: isMobile ? 'normal' : 'nowrap', flexShrink: 0 }}>{label}</span>
     <div style={{
       overflow: 'hidden', flex: 1, minWidth: 0,
@@ -305,12 +305,12 @@ const TRUSTED_BY = [
   { name: 'Saad Sells', domain: null, href: 'https://www.instagram.com/saadsells' },
 ];
 
-const TrustedByBar = ({ label = 'CLIENTS ACROSS UK · UAE · INDIA · AUSTRALIA' }) => {
+const TrustedByBar = ({ label = 'CLIENTS ACROSS UK · UAE · INDIA · AUSTRALIA', center = true }) => {
   const isMobile = useIsMobile();
   return (
-  <div style={{ padding: `20px ${PAD_X}`, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'stretch' : 'center', gap: isMobile ? 14 : 24 }}>
+  <div style={{ padding: `20px ${PAD_X}`, display: 'flex', flexDirection: (isMobile || center) ? 'column' : 'row', alignItems: 'center', gap: isMobile ? 14 : (center ? 16 : 24) }}>
     <span style={{ fontSize: 10, color: THEME.muted, letterSpacing: '.2em', fontFamily: '"Geist Mono", monospace', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>{label}</span>
-    <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 20 : 32, flexWrap: 'wrap' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 20 : 32, flexWrap: 'wrap', justifyContent: 'center' }}>
       {TRUSTED_BY.map((c) => (
         <a key={c.name} href={c.href} target="_blank" rel="noopener" className="ds-client-link" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
           <FaviconOrInitials name={c.name} domain={c.domain} size={18} />
@@ -330,23 +330,25 @@ const RINGG_SUCCESS = [
 ];
 
 // Preferred-partner callout (Ringg + Meta) - use ONCE per page.
-const PartnersStrip = () => {
+const PartnersStrip = ({ center = true }) => {
   const { ink, accent, muted, rule, bg } = THEME;
+  const rowJustify = center ? 'center' : 'flex-start';
+  const pStyle = { fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, maxWidth: 460, marginLeft: center ? 'auto' : 0, marginRight: center ? 'auto' : 0 };
   return (
-    <section style={{ padding: `40px ${PAD_X}`, borderTop: `1px solid ${ink}`, borderBottom: `1px solid ${rule}` }}>
+    <section style={{ padding: `40px ${PAD_X}`, borderTop: `1px solid ${ink}`, borderBottom: `1px solid ${rule}`, textAlign: center ? 'center' : 'left' }}>
       <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 24 }}>PREFERRED PARTNERS</div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48 }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14, flexWrap: 'wrap', justifyContent: rowJustify }}>
             <FaviconOrInitials name="Ringg" domain="ringg.ai" size={30} />
             <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 600, letterSpacing: '-0.03em' }}>Ringg</span>
             <span style={{ fontSize: 9, color: accent, letterSpacing: '.1em', border: `1px solid ${accent}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace' }}>VOICE AI</span>
           </div>
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, margin: '0 0 16px', maxWidth: 460 }}>
+          <p style={{ ...pStyle, margin: `0 ${center ? 'auto' : '0'} 16px` }}>
             Our preferred voice AI infrastructure. We're model &amp; vendor agnostic - Ringg is what we curate and select for most conversational deployments.
           </p>
           <div style={{ fontSize: 10, color: muted, letterSpacing: '.15em', marginBottom: 10 }}>SUCCESS STORIES · BUILT ON RINGG</div>
-          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', justifyContent: rowJustify }}>
             {RINGG_SUCCESS.map(c => (
               <a key={c.name} href={c.href} target="_blank" rel="noopener" className="ds-success-link" style={{ display: 'flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}>
                 <FaviconOrInitials name={c.name} domain={c.domain} size={16} />
@@ -356,12 +358,12 @@ const PartnersStrip = () => {
           </div>
         </div>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14, flexWrap: 'wrap', justifyContent: rowJustify }}>
             <FaviconOrInitials name="Meta" domain="about.meta.com" size={30} />
             <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 600, letterSpacing: '-0.03em' }}>Meta</span>
             <span style={{ fontSize: 9, color: accent, letterSpacing: '.1em', border: `1px solid ${accent}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace' }}>WHATSAPP BSP</span>
           </div>
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, margin: 0, maxWidth: 460 }}>
+          <p style={{ ...pStyle, margin: 0, marginLeft: center ? 'auto' : 0, marginRight: center ? 'auto' : 0 }}>
             Preferred partnership for WhatsApp Business Solution Provider support - the backbone of our WhatsApp agent deployments.
           </p>
         </div>

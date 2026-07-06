@@ -55,41 +55,37 @@ const ServicesPage = () => {
     <div style={{ background: bg, color: ink, fontFamily: '"Geist Mono", monospace', minHeight: '100%' }} data-screen-label="Services">
       <SiteNav active="services" />
 
-      <section style={{ position: 'relative', padding: `clamp(48px, 10vw, 72px) ${PAD_X} clamp(36px, 8vw, 56px)`, backgroundImage: gridBg }}>
+      <section style={{ position: 'relative', padding: `clamp(48px, 10vw, 72px) ${PAD_X} clamp(36px, 8vw, 56px)`, backgroundImage: gridBg, textAlign: 'center' }}>
         <CornerTicks />
         <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 24 }}>SERVICES</div>
-        <h1 style={{ fontFamily: '"Geist", sans-serif', fontWeight: 600, fontSize: 'clamp(38px, 9vw, 80px)', lineHeight: .96, letterSpacing: '-0.05em', margin: '0 0 24px', maxWidth: 780 }}>
+        <h1 style={{ fontFamily: '"Geist", sans-serif', fontWeight: 600, fontSize: 'clamp(38px, 9vw, 80px)', lineHeight: .96, letterSpacing: '-0.05em', margin: '0 auto 24px', maxWidth: 780 }}>
           Six ways we make AI <span style={{ color: accent }}>pay for itself.</span>
         </h1>
-        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 18, lineHeight: 1.5, color: muted, maxWidth: 620 }}>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 18, lineHeight: 1.5, color: muted, maxWidth: 620, margin: '0 auto' }}>
           Every engagement is scoped to a measurable outcome - hours reclaimed, labour cost cut, revenue created. Start with a free audit, then pick one or run several in sequence.
         </p>
       </section>
 
       <IntegrationsBanner />
 
-      <section style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}` }}>
-        {SERVICES_DETAIL.map((s, i) => (
-          <div key={s.n} style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '80px 1fr 1fr', gap: isMobile ? 16 : 40, padding: '48px 0', borderTop: i === 0 ? 'none' : `1px solid ${rule}` }}>
-            <div style={{ fontSize: 12, color: accent, letterSpacing: '.15em', fontFamily: '"Geist Mono", monospace' }}>{s.n}</div>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
-                <h3 style={{ fontFamily: '"Geist", sans-serif', fontSize: 36, fontWeight: 600, letterSpacing: '-0.03em', margin: 0 }}>{s.t}</h3>
-              </div>
-              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, margin: '0 0 16px' }}>{s.d}</p>
-              <div style={{ fontSize: 13, color: ink, fontFamily: 'Inter, sans-serif' }}>
+      <section style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, textAlign: 'center' }}>
+        <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          {SERVICES_DETAIL.map((s, i) => (
+            <div key={s.n} style={{ padding: '48px 0', borderTop: i === 0 ? 'none' : `1px solid ${rule}` }}>
+              <div style={{ fontSize: 12, color: accent, letterSpacing: '.15em', fontFamily: '"Geist Mono", monospace', marginBottom: 12 }}>{s.n}</div>
+              <h3 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 36px)', fontWeight: 600, letterSpacing: '-0.03em', margin: '0 0 16px' }}>{s.t}</h3>
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, margin: '0 auto 16px', maxWidth: 560 }}>{s.d}</p>
+              <div style={{ fontSize: 13, color: ink, fontFamily: 'Inter, sans-serif', marginBottom: 24 }}>
                 <span style={{ color: muted }}>Best for: </span>{s.who}
               </div>
-            </div>
-            <div>
               <div style={{ fontSize: 10, color: muted, letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: 14 }}>What you get</div>
-              <ul style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.8, color: ink, padding: 0, listStyle: 'none', margin: '0 0 20px' }}>
-                {s.get.map(g => <li key={g}>→ {g}</li>)}
+              <ul style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.9, color: ink, padding: 0, listStyle: 'none', margin: '0 0 20px' }}>
+                {s.get.map(g => <li key={g}>{g}</li>)}
               </ul>
               <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 11, color: accent, letterSpacing: '.1em', paddingTop: 12, borderTop: `1px dashed ${rule}`, display: 'inline-block' }}>{s.time}</div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       <SiteFooter heading="Pick a wedge." headingAccent="Let's start there." />
