@@ -1,19 +1,41 @@
-import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, BOOKING_URL, IntegrationsBanner, TrustedByBar, PartnersStrip, PAD_X } from './theme.jsx';
+import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, BOOKING_URL, IntegrationsBanner, TrustedByBar, PartnersStrip, PAD_X, Reveal, SEO } from './theme.jsx';
 
 // HomePage - Devstrum homepage (fully centered layout)
 // Depends on: theme.jsx
+
+const FAQS = [
+  ['What does an AI automation agency actually do?', "We build production automations, not prototypes - WhatsApp and communication agents, AI workflow automation, website + chatbot lead capture, and integrations between the tools you already run. Everything is scoped to a measurable outcome like labour hours saved or leads captured."],
+  ['How fast can Devstrum deliver an automation?', 'Most builds go live in 2 to 6 weeks. It always starts with a free 30-minute automation audit that maps your workflows and picks the highest-leverage thing to build first.'],
+  ['How much does it cost to get started?', 'The automation audit is free - a 30-minute call with no commitment. From there, each build is scoped and priced to the outcome, and the monthly growth partnership can be cancelled anytime with no lock-in.'],
+  ['Which businesses do you work with?', "Founders and growing businesses across the UK, UAE, India, and Australia - typically teams buried in repetitive manual work, slow to reply to leads, or stuck copy-pasting between disconnected tools."],
+  ['Are you tied to one AI model or vendor?', "No. We're model and vendor agnostic - we curate and select whichever model, platform, or integration is best for your specific use case."],
+];
 
 const HomePage = () => {
   const { bg, ink, accent, muted, rule } = THEME;
 
   return (
     <div style={{ background: bg, color: ink, fontFamily: '"Geist Mono", monospace', minHeight: '100%' }} data-screen-label="Home">
+      <SEO
+        title="AI Automation Agency for Growing Businesses"
+        description="Devstrum is an AI automation agency and consultancy. We build custom AI automations — WhatsApp agents, voice AI, workflow automation, and websites — that cut labour costs and free your team to focus on revenue. Delivered in weeks, across the UK, UAE, India, and Australia."
+        path="/"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: FAQS.map(([q, a]) => ({
+            '@type': 'Question',
+            name: q,
+            acceptedAnswer: { '@type': 'Answer', text: a },
+          })),
+        }}
+      />
       <SiteNav active="home" />
 
       {/* ─── HERO ─── */}
       <section style={{ position: 'relative', padding: `clamp(48px, 10vw, 72px) ${PAD_X} clamp(36px, 8vw, 56px)`, backgroundImage: gridBg, textAlign: 'center' }}>
         <CornerTicks />
-        <div style={{ maxWidth: 900, margin: '0 auto' }}>
+        <Reveal style={{ maxWidth: 900, margin: '0 auto' }}>
           <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
             <span style={{ width: 24, height: 1, background: accent }}></span>
             AI AUTOMATION FOR FOUNDERS &amp; SCALING BUSINESSES
@@ -41,7 +63,7 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ─── TRUSTED BY ─── */}
@@ -62,7 +84,7 @@ const HomePage = () => {
       <IntegrationsBanner center />
 
       {/* ─── WORK INDEX TEASER ─── */}
-      <section id="work" style={{ padding: `clamp(48px, 10vw, 80px) ${PAD_X}`, borderTop: `1px solid ${ink}`, borderBottom: `1px solid ${ink}`, textAlign: 'center' }}>
+      <Reveal as="section" id="work" style={{ padding: `clamp(48px, 10vw, 80px) ${PAD_X}`, borderTop: `1px solid ${ink}`, borderBottom: `1px solid ${ink}`, textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>SELECTED WORK</div>
         <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 40px)', fontWeight: 600, letterSpacing: '-0.03em', margin: '0 0 40px' }}>What we've shipped.</h2>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
@@ -85,10 +107,10 @@ const HomePage = () => {
           ))}
         </div>
         <a href="/work" style={{ display: 'inline-block', marginTop: 32, fontSize: 11, color: muted, letterSpacing: '.15em', textDecoration: 'none', borderBottom: `1px solid ${accent}`, paddingBottom: 3 }}>VIEW ALL WORK →</a>
-      </section>
+      </Reveal>
 
       {/* ─── SERVICES TEASER ─── */}
-      <section style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, textAlign: 'center' }}>
+      <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>SERVICES</div>
         <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 0 48px' }}>What we deliver.</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto' }}>
@@ -96,22 +118,22 @@ const HomePage = () => {
             ['A.1', 'Automation Audit', 'Free diagnostic. We map your workflows, find where AI saves the most, and pick the wedge.'],
             ['A.2', 'AI Workflow Automation', 'Automate customer service, data entry, and lead qualification - embedded in the tools you run.'],
             ['A.3', 'Websites & Maintenance', 'Fast, modern sites that convert, plus ongoing upkeep so tech is never your headache.'],
-          ].map(([n, t, d]) => (
-            <a key={n} href="/services" className="ds-card-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+          ].map(([n, t, d], i) => (
+            <Reveal key={n} as="a" href="/services" delay={i * 0.08} className="ds-card-link" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div style={{ background: bg, padding: 28, height: '100%', boxSizing: 'border-box' }}>
                 <div style={{ fontSize: 10, color: accent, letterSpacing: '.15em', marginBottom: 12 }}>{n}</div>
                 <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 12 }}>{t}</div>
                 <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, margin: 0 }}>{d}</p>
                 <div style={{ fontSize: 11, color: accent, letterSpacing: '.1em', marginTop: 16 }}>LEARN MORE →</div>
               </div>
-            </a>
+            </Reveal>
           ))}
         </div>
         <a href="/services" style={{ display: 'inline-block', marginTop: 32, fontSize: 11, color: muted, letterSpacing: '.15em', textDecoration: 'none', borderBottom: `1px solid ${accent}`, paddingBottom: 3 }}>ALL SERVICES →</a>
-      </section>
+      </Reveal>
 
       {/* ─── AUTHORITY STRIP ─── */}
-      <section style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
+      <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>WHY DEVSTRUM</div>
         <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 56px', maxWidth: 760 }}>Senior builders. Real outcomes. No lock-in.</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto' }}>
@@ -126,7 +148,21 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-      </section>
+      </Reveal>
+
+      {/* ─── FAQ ─── */}
+      <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
+        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>FAQ</div>
+        <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 56px', maxWidth: 760 }}>Common questions.</h2>
+        <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'left' }}>
+          {FAQS.map(([q, a], i) => (
+            <div key={q} style={{ padding: '24px 0', borderTop: i === 0 ? `1px solid ${rule}` : 'none', borderBottom: `1px solid ${rule}` }}>
+              <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em', marginBottom: 10 }}>{q}</div>
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, margin: 0 }}>{a}</p>
+            </div>
+          ))}
+        </div>
+      </Reveal>
 
       <SiteFooter heading="Let's build your" headingAccent="automation." center />
     </div>

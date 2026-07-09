@@ -1,0 +1,26 @@
+# Devstrum
+
+> Devstrum is an AI automation agency and consultancy (Devstrum LLP) that builds custom AI automations for growing businesses across the UK, UAE, India, and Australia. We cut labour costs and free teams to focus on revenue - delivered in weeks, not quarters.
+
+## What we do
+- Automation Audit: a free 30-minute diagnostic that maps your workflows, spots bottlenecks, and picks the highest-leverage automation to build first.
+- AI Workflow Automation: custom workflows that eliminate repetitive work - customer service, data entry, lead qualification and routing - embedded in the tools your team already uses.
+- WhatsApp & Communication: instant 24/7 responses on WhatsApp, email, and social, with appointment reminders, follow-up sequences, and pre/post-sales support.
+- Websites & Maintenance: fast, mobile-first websites that convert, with AI chatbot lead capture and ongoing maintenance.
+- Custom Tool Integrations: connect CRM, email, calendar, and business apps (HubSpot, Salesforce, Zoho) and automate the data flow between them.
+- Monthly Growth Partnership: an ongoing, month-to-month partner that monitors, optimises, and expands your automations as you grow.
+
+## Who we serve
+Founders and growing businesses that want to cut labour costs and scale with AI automation, typically delivered within a few weeks. Every engagement starts with a free automation audit.
+
+## Pages
+- Home: https://devstrum.com/
+- Services: https://devstrum.com/services
+- Work: https://devstrum.com/work
+- About: https://devstrum.com/about
+
+## Contact
+- Email: sumanth@devstrum.com
+- Phone: +64 22 199 74445
+- Website: https://devstrum.com
+- Entity: Devstrum LLP, India
