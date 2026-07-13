@@ -7,7 +7,7 @@ const FAQS = [
   ['What does an AI automation agency actually do?', "We build production automations, not prototypes - WhatsApp and communication agents, AI workflow automation, website + chatbot lead capture, and integrations between the tools you already run. Everything is scoped to a measurable outcome like labour hours saved or leads captured."],
   ['How fast can Devstrum deliver an automation?', 'Most builds go live in 2 to 6 weeks. It always starts with a free 30-minute automation audit that maps your workflows and picks the highest-leverage thing to build first.'],
   ['How much does it cost to get started?', 'The automation audit is free - a 30-minute call with no commitment. From there, each build is scoped and priced to the outcome, and the monthly growth partnership can be cancelled anytime with no lock-in.'],
-  ['Which businesses do you work with?', "Founders and growing businesses across the UK, UAE, India, and Australia - typically teams buried in repetitive manual work, slow to reply to leads, or stuck copy-pasting between disconnected tools."],
+  ['Which businesses do you work with?', "Founders and growing businesses across the UK, UAE, and Australia - typically teams buried in repetitive manual work, slow to reply to leads, or stuck copy-pasting between disconnected tools."],
   ['Are you tied to one AI model or vendor?', "No. We're model and vendor agnostic - we curate and select whichever model, platform, or integration is best for your specific use case."],
 ];
 
@@ -18,7 +18,7 @@ const HomePage = () => {
     <div style={{ background: bg, color: ink, fontFamily: '"Geist Mono", monospace', minHeight: '100%' }} data-screen-label="Home">
       <SEO
         title="AI Automation Agency for Growing Businesses"
-        description="Devstrum is an AI automation agency and consultancy. We build custom AI automations — WhatsApp agents, voice AI, workflow automation, and websites — that cut labour costs and free your team to focus on revenue. Delivered in weeks, across the UK, UAE, India, and Australia."
+        description="Devstrum is an AI automation agency and consultancy. We build custom AI automations — WhatsApp agents, voice AI, workflow automation, and websites — that cut labour costs and free your team to focus on revenue. Delivered in weeks, across the UK, UAE, and Australia."
         path="/"
         jsonLd={{
           '@context': 'https://schema.org',

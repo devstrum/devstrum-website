@@ -15,12 +15,12 @@ const AI_PROJECTS = [
 const CLIENT_WORK = [
   {
     vertical: 'HEALTHCARE & SPORTS MEDICINE',
-    who: "Physiotherapy, rehab & sports-medicine teams — including the medical team behind India's Olympic and FIFA athletes.",
+    who: "Physiotherapy, rehab & sports-medicine teams — including the medical team behind Olympic and FIFA athletes.",
     built: ['WhatsApp appointment reminders & confirmations', 'Voice agents for booking & patient intake', 'Patient engagement and follow-up automation'],
   },
   {
     vertical: 'REAL ESTATE',
-    who: "One of India's largest property developers.",
+    who: "One of the region's largest property developers.",
     built: ['Lead qualification & instant routing to sales', 'WhatsApp & voice follow-up sequences', 'Reactivation campaigns across the pipeline'],
   },
   {

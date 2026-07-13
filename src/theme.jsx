@@ -234,9 +234,9 @@ const DevstrumLogo = ({ height = 22, onDark = false, accent = THEME.accent }) =>
 };
 
 const CONTACT = {
-  entity: 'Devstrum LLP · India',
+  entity: 'Devstrum LLP',
   email: 'sumanth@devstrum.com',
-  phone: '+91 99012 65333 · +64 22 199 74445',
+  phone: '+64 22 199 74445',
   website: 'devstrum.com',
 };
 
@@ -385,7 +385,7 @@ const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.
     <footer style={{ marginTop: 40, paddingTop: 24, borderTop: `1px solid ${THEME.rule}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 16 }}>
       <div style={{ display: 'flex', gap: 32, alignItems: 'baseline', flexWrap: 'wrap' }}>
         <DevstrumLogo height={18} accent={THEME.accent} />
-        <span style={{ fontSize: 11, color: THEME.muted, letterSpacing: '.1em', fontFamily: '"Geist Mono", monospace' }}>DEVSTRUM LLP · AI AUTOMATION FOR GROWING BUSINESSES · INDIA · © 2026 · DEVSTRUM.COM</span>
+        <span style={{ fontSize: 11, color: THEME.muted, letterSpacing: '.1em', fontFamily: '"Geist Mono", monospace' }}>DEVSTRUM LLP · AI AUTOMATION FOR GROWING BUSINESSES · © 2026 · DEVSTRUM.COM</span>
       </div>
       <nav style={{ display: 'flex', gap: 20, fontSize: 11, color: THEME.muted, letterSpacing: '.1em', fontFamily: '"Geist Mono", monospace' }}>
         {NAV_LINKS.map(l => <a key={l.key} href={l.href} style={{ color: THEME.muted, textDecoration: 'none' }}>{l.label.toUpperCase()}</a>)}
@@ -466,7 +466,7 @@ const TRUSTED_BY = [
   { name: 'Saad Sells', domain: null, href: 'https://www.instagram.com/saadsells' },
 ];
 
-const TrustedByBar = ({ label = 'CLIENTS ACROSS UK · UAE · INDIA · AUSTRALIA', center = true }) => {
+const TrustedByBar = ({ label = 'CLIENTS ACROSS UK · UAE · AUSTRALIA', center = true }) => {
   const isMobile = useIsMobile();
   return (
   <div style={{ padding: `20px ${PAD_X}`, display: 'flex', flexDirection: (isMobile || center) ? 'column' : 'row', alignItems: 'center', gap: isMobile ? 14 : (center ? 16 : 24) }}>

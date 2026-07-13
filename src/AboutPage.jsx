@@ -22,7 +22,7 @@ const AboutPage = () => {
     <div style={{ background: bg, color: ink, fontFamily: '"Geist Mono", monospace', minHeight: '100%' }} data-screen-label="About">
       <SEO
         title="About Devstrum — AI Automation Studio"
-        description="Devstrum is an AI automation studio - engineers and builders shipping production automations for founders and scaling businesses across the UK, UAE, India, and Australia. Backed by Saad Mohammed's Dubai network."
+        description="Devstrum is an AI automation studio - engineers and builders shipping production automations for founders and scaling businesses across the UK, UAE, and Australia. Backed by Saad Mohammed's Dubai network."
         path="/about"
       />
       <SiteNav active="about" />
@@ -34,7 +34,7 @@ const AboutPage = () => {
           Every company will be <span style={{ color: accent }}>AI-native.</span><br />We just get you there faster.
         </h1>
         <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 18, lineHeight: 1.55, color: muted, maxWidth: 640, margin: '0 auto' }}>
-          Devstrum is an AI automation studio - engineers and builders who ship production systems for founders and scaling businesses across the UK, UAE, India, and Australia. We don't sell strategy decks - we build the scaffold, ship the system, and hand you the keys.
+          Devstrum is an AI automation studio - engineers and builders who ship production systems for founders and scaling businesses across the UK, UAE, and Australia. We don't sell strategy decks - we build the scaffold, ship the system, and hand you the keys.
         </p>
       </Reveal>
 
