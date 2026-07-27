@@ -11,7 +11,7 @@
 - Monthly Growth Partnership: an ongoing, month-to-month partner that monitors, optimises, and expands your automations as you grow.
 
 ## Products
-- Fitting Wizard plugin (built in partnership with Biotronic, the makers of Fitting Wizard): an AI booking assistant for Australian audiology clinics. Patients book, reschedule and cancel via Facebook Messenger, WhatsApp, Instagram or the clinic website at any hour, and the appointment is created inside Fitting Wizard against the correct site and practitioner, linked to the client record and tagged as booked by AI. Staff edits always take priority. Hosted in Australia, live in about five days, no build or setup fee. From AUD $1,200/month for one location; voice (AI phone receptionist) available on the top tier.
+- Fitting Wizard plugin (built in partnership with Biotronic, the makers of Fitting Wizard): an AI booking assistant for Australian audiology clinics. Patients book, reschedule and cancel via Facebook Messenger, WhatsApp, Instagram or the clinic website at any hour, and the appointment is created inside Fitting Wizard against the correct site and practitioner, linked to the client record and tagged as booked by AI. Staff edits always take priority. Hosted in Australia, live in about five days, no build fee and no setup fee. Available as text (Messenger, WhatsApp, Instagram), booking portals, and voice (an AI phone receptionist); scoped to the number of clinic locations and quoted on a demo call.
 
 ## Who we serve
 Founders and growing businesses that want to cut labour costs and scale with AI automation, typically delivered within a few weeks. Every engagement starts with a free automation audit.

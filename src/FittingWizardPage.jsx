@@ -20,17 +20,12 @@ const STEPS = [
   },
 ];
 
-// Complete monthly prices, not add-ons - priced by number of clinic locations.
-const PLAN_COLUMNS = [
-  ['Text', 'Messenger + WhatsApp + booking into Fitting Wizard'],
-  ['Text + booking portals', 'everything in Text, plus public and private online booking'],
-  ['Text + portals + voice', 'everything, plus the AI phone receptionist'],
-];
-
-const PLAN_ROWS = [
-  ['Starter', '1 location', ['$1,200', '$1,700', '$2,300']],
-  ['Growth', '2–4 locations', ['$1,950', '$2,600', '$3,500']],
-  ['Scale', '5–10 locations', ['$2,800', '$3,500', '$4,800']],
+// No pricing on this page by design - it's quoted per practice on the demo call.
+// These describe what a subscription covers, without naming a number.
+const INCLUDED = [
+  ['Text', 'Facebook Messenger, WhatsApp and Instagram, answered instantly and booked straight into Fitting Wizard.'],
+  ['Booking portals', 'Public and private online booking off your website, running against the same real availability.'],
+  ['Voice', 'An AI phone receptionist that answers, qualifies and books calls, with a generous monthly call allowance.'],
 ];
 
 const TRUST = [
@@ -44,7 +39,7 @@ const FAQS = [
   ['Does anything change in how we use Fitting Wizard?', "No. Your Wizard, your data and your workflow stay exactly as they are. The assistant creates properly linked, tagged appointments alongside your team's — it doesn't replace anything your staff do."],
   ['What if the assistant books something wrong?', 'Every automated appointment is tagged so your front desk can spot it instantly. Your staff can move, edit or cancel it like any other appointment, and their change always takes priority.'],
   ['We run multiple clinics on one server. Does that work?', 'Yes. The connector is installed per system, including Habitat3-hosted and other remote-desktop environments, and books against the correct site and practitioner for each location.'],
-  ['What does it cost to get started?', "Nothing beyond the subscription. There's no build fee and no setup fee for Fitting Wizard practices — the monthly price includes installation, hosting, AI costs and support."],
+  ['How long does setup take?', "Once you've seen a demo and are happy to proceed, most practices are live in about five days. We install the connector remotely, connect your channels, and test with your team before anything is patient-facing."],
   ['Who supports it?', 'Devstrum supports the plugin during Australian business hours. Biotronic remains your support contact for Fitting Wizard itself, exactly as today.'],
 ];
 
@@ -89,68 +84,6 @@ const ChatMock = () => {
   );
 };
 
-const PricingTable = () => {
-  const { bg, ink, accent, muted, rule } = THEME;
-  const isMobile = useIsMobile();
-
-  // Mobile: one card per practice size - a 4-column table can't shrink honestly.
-  if (isMobile) {
-    return (
-      <div style={{ display: 'grid', gap: 1, background: rule, border: `1px solid ${rule}`, textAlign: 'left' }}>
-        {PLAN_ROWS.map(([size, locs, prices]) => (
-          <div key={size} style={{ background: bg, padding: 24 }}>
-            <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 20, fontWeight: 600, letterSpacing: '-0.02em' }}>{size}</div>
-            <div style={{ fontSize: 11, color: muted, letterSpacing: '.15em', marginTop: 4, marginBottom: 18 }}>{locs.toUpperCase()}</div>
-            {PLAN_COLUMNS.map(([label, sub], i) => (
-              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16, padding: '12px 0', borderTop: `1px solid ${rule}` }}>
-                <div>
-                  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, color: ink }}>{label}</div>
-                  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 12, color: muted, lineHeight: 1.4, marginTop: 2 }}>{sub}</div>
-                </div>
-                <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 20, fontWeight: 600, letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>{prices[i]}</div>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', border: `1px solid ${rule}` }}>
-      <thead>
-        <tr>
-          <th style={{ background: ink, color: bg, padding: '18px 20px', fontFamily: '"Geist Mono", monospace', fontSize: 10, fontWeight: 600, letterSpacing: '.2em', verticalAlign: 'top', width: '22%' }}>
-            PRACTICE SIZE
-          </th>
-          {PLAN_COLUMNS.map(([label, sub]) => (
-            <th key={label} style={{ background: ink, color: bg, padding: '18px 20px', verticalAlign: 'top', width: '26%' }}>
-              <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 15, fontWeight: 600, letterSpacing: '-0.01em' }}>{label}</div>
-              <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 12, fontWeight: 400, lineHeight: 1.45, color: 'rgba(255,255,255,.65)', marginTop: 6 }}>{sub}</div>
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {PLAN_ROWS.map(([size, locs, prices]) => (
-          <tr key={size}>
-            <td style={{ padding: '20px', borderTop: `1px solid ${rule}`, verticalAlign: 'top' }}>
-              <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 600, letterSpacing: '-0.02em' }}>{size}</div>
-              <div style={{ fontSize: 10, color: muted, letterSpacing: '.15em', marginTop: 6 }}>{locs.toUpperCase()}</div>
-            </td>
-            {prices.map((p, i) => (
-              <td key={i} style={{ padding: '20px', borderTop: `1px solid ${rule}`, borderLeft: `1px solid ${rule}`, verticalAlign: 'top' }}>
-                <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 24, fontWeight: 600, letterSpacing: '-0.03em', whiteSpace: 'nowrap' }}>{p}</div>
-                <div style={{ fontSize: 10, color: accent, letterSpacing: '.15em', marginTop: 6 }}>PER MONTH</div>
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-};
-
 const FittingWizardPage = () => {
   const { bg, ink, accent, muted, rule } = THEME;
   const isMobile = useIsMobile();
@@ -170,15 +103,6 @@ const FittingWizardPage = () => {
           operatingSystem: 'Windows (Fitting Wizard, incl. remote desktop environments)',
           provider: { '@type': 'ProfessionalService', name: 'Devstrum' },
           areaServed: 'Australia',
-          offers: PLAN_ROWS.flatMap(([size, locs, prices]) =>
-            prices.map((p, i) => ({
-              '@type': 'Offer',
-              name: `${size} (${locs}) · ${PLAN_COLUMNS[i][0]}`,
-              price: p.replace(/[$,]/g, ''),
-              priceCurrency: 'AUD',
-              description: PLAN_COLUMNS[i][1],
-            }))
-          ),
         }}
       />
       <SiteNav active="products" />
@@ -212,14 +136,14 @@ const FittingWizardPage = () => {
                   SEE A BOOKING LAND IN FITTING WIZARD →
                 </button>
               </a>
-              <a href="#pricing" style={{ textDecoration: 'none' }}>
+              <a href="#how-it-works" style={{ textDecoration: 'none' }}>
                 <button style={{ padding: '18px 28px', background: 'transparent', color: ink, border: `1px solid ${ink}`, fontSize: 12, fontWeight: 600, letterSpacing: '.15em', fontFamily: 'inherit', cursor: 'pointer' }}>
-                  SEE PRICING
+                  HOW IT WORKS
                 </button>
               </a>
             </div>
             <p style={{ fontFamily: '"Geist Mono", monospace', fontSize: 11, color: muted, letterSpacing: '.1em', marginTop: 24, lineHeight: 1.8 }}>
-              LIVE IN ABOUT 5 DAYS · HOSTED IN AUSTRALIA · 6-MONTH MINIMUM TERM, THEN MONTH TO MONTH
+              LIVE IN ABOUT 5 DAYS · HOSTED IN AUSTRALIA · NO BUILD FEE, NO SETUP FEE
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -228,8 +152,16 @@ const FittingWizardPage = () => {
         </div>
       </section>
 
+      {/* ─── PROOF ─── */}
+      {/* The reference practice is deliberately unnamed. */}
+      <Reveal as="section" style={{ padding: `28px ${PAD_X}`, borderTop: `1px solid ${ink}`, borderBottom: `1px solid ${rule}`, textAlign: 'center' }}>
+        <p style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(17px, 2.4vw, 22px)', fontWeight: 500, letterSpacing: '-0.02em', lineHeight: 1.45, margin: '0 auto', maxWidth: 760 }}>
+          We're already working with <span style={{ color: accent }}>Fitting Wizard's largest client</span> — a multi-site audiology group running this across their locations.
+        </p>
+      </Reveal>
+
       {/* ─── HOW IT WORKS ─── */}
-      <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
+      <Reveal as="section" id="how-it-works" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>HOW IT WORKS</div>
         <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 16px' }}>
           No new software to learn.
@@ -265,20 +197,23 @@ const FittingWizardPage = () => {
         </Reveal>
       */}
 
-      {/* ─── PRICING ─── */}
-      <Reveal as="section" id="pricing" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
-        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>PRICING</div>
+      {/* ─── WHAT'S INCLUDED ─── */}
+      {/* Deliberately no prices - quoted per practice on the demo call. */}
+      <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
+        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>WHAT'S INCLUDED</div>
         <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 16px' }}>
           One monthly fee, <span style={{ color: accent }}>everything included.</span>
         </h2>
-        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 16, lineHeight: 1.6, color: muted, maxWidth: 660, margin: '0 auto 48px' }}>
-          Hosting, AI, integrations and support. Priced by the number of clinic locations you run. Each package below is a complete price — choose one, they're not added together. All prices AUD per month, ex GST.
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 16, lineHeight: 1.6, color: muted, maxWidth: 660, margin: '0 auto 56px' }}>
+          Installation, hosting, AI, integrations and support — no build fee and no setup fee for Fitting Wizard practices. Scoped to the number of clinic locations you run, and quoted on the demo call.
         </p>
-        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
-          <PricingTable />
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.7, color: muted, maxWidth: 720, margin: '24px auto 0', textAlign: 'left' }}>
-            Voice plans include a fair-use allowance of call minutes each month (750 / 2,000 / 4,000 by tier — typically 1,500 to 3,000 calls). Usage beyond the allowance is 30c per minute; practices that regularly exceed it simply move up a tier. Six-month minimum term, then month to month. No build fee and no setup fee for Fitting Wizard practices.
-          </p>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto', textAlign: 'left' }}>
+          {INCLUDED.map(([t, d]) => (
+            <div key={t} style={{ background: bg, padding: 32 }}>
+              <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 18, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 12 }}>{t}</div>
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.65, color: muted, margin: 0 }}>{d}</p>
+            </div>
+          ))}
         </div>
       </Reveal>
 
