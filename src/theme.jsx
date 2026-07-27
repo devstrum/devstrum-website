@@ -243,6 +243,9 @@ const CONTACT = {
 const NAV_LINKS = [
   { key: 'home', label: 'Home', href: '/' },
   { key: 'services', label: 'Services', href: '/services' },
+  // Single product today (the Fitting Wizard plugin) - the tab links straight
+  // to it. Point this at an index page once there's more than one.
+  { key: 'products', label: 'Products', href: '/products/fitting-wizard' },
   { key: 'work', label: 'Work', href: '/work' },
   { key: 'about', label: 'About', href: '/about' },
 ];
@@ -354,7 +357,7 @@ const SiteNav = ({ active }) => {
   );
 };
 
-const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.', center = true }) => {
+const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.', center = true, ctaLabel = 'BOOK A FREE AUDIT →' }) => {
   return (
   <section id="contact" style={{ padding: `clamp(56px, 14vw, 120px) ${PAD_X}`, borderTop: `1px solid ${THEME.ink}`, textAlign: center ? 'center' : 'left' }}>
     <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(38px, 9vw, 88px)', fontWeight: 600, letterSpacing: '-0.05em', margin: '0 0 32px', lineHeight: 1 }}>
@@ -362,7 +365,7 @@ const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.
     </h2>
     <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap', justifyContent: center ? 'center' : 'flex-start' }}>
       <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
-        <button style={{ padding: '18px 28px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.2em', fontFamily: 'inherit', cursor: 'pointer' }}>BOOK A FREE AUDIT →</button>
+        <button style={{ padding: '18px 28px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.2em', fontFamily: 'inherit', cursor: 'pointer' }}>{ctaLabel}</button>
       </a>
       <span style={{ fontSize: 13, color: THEME.muted, fontFamily: '"Geist Mono", monospace' }}>
         or email <span style={{ color: THEME.ink, borderBottom: `1px solid ${THEME.accent}` }}>{CONTACT_EMAIL}</span>
