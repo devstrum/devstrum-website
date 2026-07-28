@@ -7,7 +7,8 @@ const FAQS = [
   ['What does an AI automation agency actually do?', "We build production automations, not prototypes - WhatsApp and communication agents, AI workflow automation, website + chatbot lead capture, and integrations between the tools you already run. Everything is scoped to a measurable outcome like labour hours saved or leads captured."],
   ['How fast can Devstrum deliver an automation?', 'Most builds go live in 2 to 6 weeks. It always starts with a free 30-minute automation audit that maps your workflows and picks the highest-leverage thing to build first.'],
   ['How much does it cost to get started?', 'The automation audit is free - a 30-minute call with no commitment. From there, each build is scoped and priced to the outcome, and the monthly growth partnership can be cancelled anytime with no lock-in.'],
-  ['Which businesses do you work with?', "Founders and growing businesses across the UK, UAE, and Australia - typically teams buried in repetitive manual work, slow to reply to leads, or stuck copy-pasting between disconnected tools."],
+  ['Which businesses do you work with?', "Founders and growing businesses across Australia, the UK, and the UAE - typically teams buried in repetitive manual work, slow to reply to leads, or stuck copy-pasting between disconnected tools."],
+  ['Do you work with Australian businesses?', "Yes - Australian healthcare is our deepest vertical. We're the AI booking agent for Fitting Wizard, the practice-management system Australian audiology clinics run on, live with a multi-clinic chain in Melbourne, with patient data hosted on Australian infrastructure and support in Australian business hours."],
   ['Are you tied to one AI model or vendor?', "No. We're model and vendor agnostic - we curate and select whichever model, platform, or integration is best for your specific use case."],
 ];
 
@@ -18,7 +19,7 @@ const HomePage = () => {
     <div style={{ background: bg, color: ink, fontFamily: '"Geist Mono", monospace', minHeight: '100%' }} data-screen-label="Home">
       <SEO
         title="AI Automation Agency for Growing Businesses"
-        description="Devstrum is an AI automation agency and consultancy. We build custom AI automations — WhatsApp agents, voice AI, workflow automation, and websites — that cut labour costs and free your team to focus on revenue. Delivered in weeks, across the UK, UAE, and Australia."
+        description="Devstrum is an AI automation agency and consultancy. We build custom AI automations — WhatsApp agents, voice AI, workflow automation, and websites — that cut labour costs and free your team to focus on revenue. Delivered in weeks, across Australia, the UK, and the UAE."
         path="/"
         jsonLd={{
           '@context': 'https://schema.org',
@@ -69,13 +70,34 @@ const HomePage = () => {
       {/* ─── TRUSTED BY ─── */}
       <TrustedByBar center />
 
-      {/* ─── SOCIAL PROOF ─── */}
-      <div style={{ padding: `14px ${PAD_X}`, borderBottom: `1px solid ${rule}`, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, flexWrap: 'wrap', fontSize: 12, color: muted, fontFamily: '"Geist Mono", monospace', textAlign: 'center' }}>
-        <span>BACKED &amp; VOUCHED FOR BY DUBAI CREATOR →</span>
-        <a href="https://www.instagram.com/saadsells" target="_blank" rel="noopener" style={{ color: ink, borderBottom: `1px solid ${accent}`, textDecoration: 'none' }}>@saadsells</a>
-        <span style={{ opacity: .5 }}>·</span>
-        <span>Saad Mohammed, House of Shafaq — supporter &amp; client</span>
-      </div>
+      {/* ─── AUSTRALIA ─── */}
+      <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
+        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>AUSTRALIA</div>
+        <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 16px', maxWidth: 820 }}>
+          Live in Australian <span style={{ color: accent }}>clinics today.</span>
+        </h2>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 17, lineHeight: 1.6, color: muted, maxWidth: 660, margin: '0 auto 56px' }}>
+          Our deepest work is in Australian healthcare - audiology, physio and allied health practices running AI that books patients around the clock, on infrastructure that stays onshore.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto', textAlign: 'left' }}>
+          {[
+            ['Fitting Wizard Agent', "Built with Biotronic, the makers of Fitting Wizard - the practice-management system Australian audiology clinics run on. Live with a multi-clinic chain in Melbourne.", '/products/fitting-wizard'],
+            ['Hosted in Australia', 'Patient data is processed and hosted on Australian infrastructure, handled in line with the Privacy Act and the Australian Privacy Principles.', null],
+            ['Australian business hours', 'Support on your clock, not a timezone away - and every build tested with your team before it ever faces a patient.', null],
+          ].map(([t, d, href]) => {
+            const inner = (
+              <div style={{ background: bg, padding: 32, height: '100%', boxSizing: 'border-box' }}>
+                <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 20, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 12 }}>{t}</div>
+                <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, margin: 0 }}>{d}</p>
+                {href && <div style={{ fontSize: 11, color: accent, letterSpacing: '.1em', marginTop: 16, fontFamily: '"Geist Mono", monospace' }}>SEE THE AGENT →</div>}
+              </div>
+            );
+            return href
+              ? <a key={t} href={href} className="ds-card-link" style={{ textDecoration: 'none', color: 'inherit' }}>{inner}</a>
+              : <div key={t}>{inner}</div>;
+          })}
+        </div>
+      </Reveal>
 
       {/* ─── PARTNERS ─── */}
       <PartnersStrip center />
@@ -131,6 +153,16 @@ const HomePage = () => {
         </div>
         <a href="/services" style={{ display: 'inline-block', marginTop: 32, fontSize: 11, color: muted, letterSpacing: '.15em', textDecoration: 'none', borderBottom: `1px solid ${accent}`, paddingBottom: 3 }}>ALL SERVICES →</a>
       </Reveal>
+
+      {/* ─── SOCIAL PROOF ─── */}
+      {/* Sits below the Australian proof, so the top of the page leads with the
+          clinics we're live in rather than the backer's network. */}
+      <div style={{ padding: `14px ${PAD_X}`, borderTop: `1px solid ${rule}`, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, flexWrap: 'wrap', fontSize: 12, color: muted, fontFamily: '"Geist Mono", monospace', textAlign: 'center' }}>
+        <span>BACKED &amp; VOUCHED FOR BY →</span>
+        <a href="https://www.instagram.com/saadsells" target="_blank" rel="noopener" style={{ color: ink, borderBottom: `1px solid ${accent}`, textDecoration: 'none' }}>@saadsells</a>
+        <span style={{ opacity: .5 }}>·</span>
+        <span>Saad Mohammed, House of Shafaq — supporter &amp; client</span>
+      </div>
 
       {/* ─── AUTHORITY STRIP ─── */}
       <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>

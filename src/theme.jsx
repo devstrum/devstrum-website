@@ -1,7 +1,7 @@
 import React from 'react';
 
 // devstrum-shared.jsx - Devstrum branded THEME, nav/footer, partner data.
-// Shared design system (grid + mono/serif type) re-skinned for Devstrum LLP.
+// Shared design system (grid + mono/serif type) re-skinned for Devstrum.
 // Depends on: nothing (self-contained logo). Load before content files.
 
 const THEME = {
@@ -234,7 +234,7 @@ const DevstrumLogo = ({ height = 22, onDark = false, accent = THEME.accent }) =>
 };
 
 const CONTACT = {
-  entity: 'Devstrum LLP',
+  entity: 'AI automation studio',
   email: 'sumanth@devstrum.com',
   phone: '+64 22 199 74445',
   website: 'devstrum.com',
@@ -245,7 +245,7 @@ const NAV_LINKS = [
   { key: 'services', label: 'Services', href: '/services' },
   // Single product today (the Fitting Wizard plugin) - the tab links straight
   // to it. Point this at an index page once there's more than one.
-  { key: 'products', label: 'Products', href: '/products/fitting-wizard' },
+  { key: 'products', label: 'Fitting Wizard Agent', href: '/products/fitting-wizard' },
   { key: 'work', label: 'Work', href: '/work' },
   { key: 'about', label: 'About', href: '/about' },
 ];
@@ -388,7 +388,7 @@ const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.
     <footer style={{ marginTop: 40, paddingTop: 24, borderTop: `1px solid ${THEME.rule}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 16 }}>
       <div style={{ display: 'flex', gap: 32, alignItems: 'baseline', flexWrap: 'wrap' }}>
         <DevstrumLogo height={18} accent={THEME.accent} />
-        <span style={{ fontSize: 11, color: THEME.muted, letterSpacing: '.1em', fontFamily: '"Geist Mono", monospace' }}>DEVSTRUM LLP · AI AUTOMATION FOR GROWING BUSINESSES · © 2026 · DEVSTRUM.COM</span>
+        <span style={{ fontSize: 11, color: THEME.muted, letterSpacing: '.1em', fontFamily: '"Geist Mono", monospace' }}>DEVSTRUM · AI AUTOMATION FOR GROWING BUSINESSES · © 2026 · DEVSTRUM.COM</span>
       </div>
       <nav style={{ display: 'flex', gap: 20, fontSize: 11, color: THEME.muted, letterSpacing: '.1em', fontFamily: '"Geist Mono", monospace' }}>
         {NAV_LINKS.map(l => <a key={l.key} href={l.href} style={{ color: THEME.muted, textDecoration: 'none' }}>{l.label.toUpperCase()}</a>)}
@@ -469,7 +469,7 @@ const TRUSTED_BY = [
   { name: 'Saad Sells', domain: null, href: 'https://www.instagram.com/saadsells' },
 ];
 
-const TrustedByBar = ({ label = 'CLIENTS ACROSS UK · UAE · AUSTRALIA', center = true }) => {
+const TrustedByBar = ({ label = 'CLIENTS ACROSS AUSTRALIA · UK · UAE', center = true }) => {
   const isMobile = useIsMobile();
   return (
   <div style={{ padding: `20px ${PAD_X}`, display: 'flex', flexDirection: (isMobile || center) ? 'column' : 'row', alignItems: 'center', gap: isMobile ? 14 : (center ? 16 : 24) }}>
@@ -487,34 +487,48 @@ const TrustedByBar = ({ label = 'CLIENTS ACROSS UK · UAE · AUSTRALIA', center 
 };
 
 // Preferred-partner callout (Ringg + Meta) - use ONCE per page.
+// Laid out as the site's standard bordered card pair so the two partners read
+// as one centred block, rather than two blocks drifting to the page edges.
+const PARTNERS = [
+  {
+    name: 'Ringg', domain: 'ringg.ai', tag: 'VOICE AI',
+    blurb: "Our preferred voice AI infrastructure. We're model & vendor agnostic - Ringg is what we curate and select for most conversational deployments.",
+  },
+  {
+    name: 'Meta', domain: 'about.meta.com', tag: 'WHATSAPP BSP',
+    blurb: 'Preferred partnership for WhatsApp Business Solution Provider support - the backbone of our WhatsApp agent deployments.',
+  },
+  {
+    // No usable favicon for Biotronic - falls back to the initials chip.
+    name: 'Biotronic', domain: null, tag: 'FITTING WIZARD',
+    blurb: 'The makers of Fitting Wizard, the practice-management system Australian audiology clinics run on. Our booking agent is built with them.',
+    href: '/products/fitting-wizard',
+  },
+];
+
 const PartnersStrip = ({ center = true }) => {
   const { ink, accent, muted, rule, bg } = THEME;
-  const rowJustify = center ? 'center' : 'flex-start';
-  const pStyle = { fontFamily: 'Inter, sans-serif', fontSize: 15, lineHeight: 1.6, color: muted, maxWidth: 460, marginLeft: center ? 'auto' : 0, marginRight: center ? 'auto' : 0 };
+  const isMobile = useIsMobile();
   return (
-    <section style={{ padding: `40px ${PAD_X}`, borderTop: `1px solid ${ink}`, borderBottom: `1px solid ${rule}`, textAlign: center ? 'center' : 'left' }}>
-      <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 24 }}>PREFERRED PARTNERS</div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48 }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14, flexWrap: 'wrap', justifyContent: rowJustify }}>
-            <FaviconOrInitials name="Ringg" domain="ringg.ai" size={30} />
-            <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 600, letterSpacing: '-0.03em' }}>Ringg</span>
-            <span style={{ fontSize: 9, color: accent, letterSpacing: '.1em', border: `1px solid ${accent}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace' }}>VOICE AI</span>
-          </div>
-          <p style={{ ...pStyle, margin: 0 }}>
-            Our preferred voice AI infrastructure. We're model &amp; vendor agnostic - Ringg is what we curate and select for most conversational deployments.
-          </p>
-        </div>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14, flexWrap: 'wrap', justifyContent: rowJustify }}>
-            <FaviconOrInitials name="Meta" domain="about.meta.com" size={30} />
-            <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 600, letterSpacing: '-0.03em' }}>Meta</span>
-            <span style={{ fontSize: 9, color: accent, letterSpacing: '.1em', border: `1px solid ${accent}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace' }}>WHATSAPP BSP</span>
-          </div>
-          <p style={{ ...pStyle, margin: 0, marginLeft: center ? 'auto' : 0, marginRight: center ? 'auto' : 0 }}>
-            Preferred partnership for WhatsApp Business Solution Provider support - the backbone of our WhatsApp agent deployments.
-          </p>
-        </div>
+    <section style={{ padding: `40px ${PAD_X}`, borderTop: `1px solid ${ink}`, borderBottom: `1px solid ${rule}`, textAlign: 'center' }}>
+      <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 28 }}>PREFERRED PARTNERS</div>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : `repeat(${PARTNERS.length}, 1fr)`, gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto', textAlign: 'left' }}>
+        {PARTNERS.map((p) => {
+          const inner = (
+            <div style={{ background: bg, padding: 28, height: '100%', boxSizing: 'border-box' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14, flexWrap: 'wrap' }}>
+                <FaviconOrInitials name={p.name} domain={p.domain} size={26} />
+                <span style={{ fontFamily: '"Geist", sans-serif', fontSize: 22, fontWeight: 600, letterSpacing: '-0.03em' }}>{p.name}</span>
+                <span style={{ fontSize: 9, color: accent, letterSpacing: '.1em', border: `1px solid ${accent}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace' }}>{p.tag}</span>
+              </div>
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.6, color: muted, margin: 0 }}>{p.blurb}</p>
+              {p.href && <div style={{ fontSize: 11, color: accent, letterSpacing: '.1em', marginTop: 16, fontFamily: '"Geist Mono", monospace' }}>SEE THE AGENT →</div>}
+            </div>
+          );
+          return p.href
+            ? <a key={p.name} href={p.href} className="ds-card-link" style={{ textDecoration: 'none', color: 'inherit' }}>{inner}</a>
+            : <div key={p.name}>{inner}</div>;
+        })}
       </div>
     </section>
   );

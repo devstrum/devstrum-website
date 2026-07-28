@@ -1,6 +1,6 @@
 # Devstrum
 
-> Devstrum is an AI automation agency and consultancy (Devstrum LLP) that builds custom AI automations for growing businesses across the UK, UAE, India, and Australia. We cut labour costs and free teams to focus on revenue - delivered in weeks, not quarters.
+> Devstrum is an AI automation agency and consultancy that builds custom AI automations for growing businesses across Australia, the UK, and the UAE. We cut labour costs and free teams to focus on revenue - delivered in weeks, not quarters.
 
 ## What we do
 - Automation Audit: a free 30-minute diagnostic that maps your workflows, spots bottlenecks, and picks the highest-leverage automation to build first.
@@ -11,7 +11,7 @@
 - Monthly Growth Partnership: an ongoing, month-to-month partner that monitors, optimises, and expands your automations as you grow.
 
 ## Products
-- Fitting Wizard plugin (built in partnership with Biotronic, the makers of Fitting Wizard): an AI booking assistant for Australian audiology clinics. Patients book, reschedule and cancel via Facebook Messenger, WhatsApp, Instagram or the clinic website at any hour, and the appointment is created inside Fitting Wizard against the correct site and practitioner, linked to the client record and tagged as booked by AI. Staff edits always take priority. Hosted in Australia, live in about five days, no build fee and no setup fee. Available as text (Messenger, WhatsApp, Instagram), booking portals, and voice (an AI phone receptionist); scoped to the number of clinic locations and quoted on a demo call.
+- Fitting Wizard Agent (built in partnership with Biotronic, the makers of Fitting Wizard): an AI booking assistant for Australian audiology clinics, already live with a multi-clinic audiology chain in Melbourne. Patients book, reschedule and cancel via Facebook Messenger, WhatsApp, Instagram, email, SMS, the clinic website or any other channel the practice chooses, at any hour, and the appointment is created inside Fitting Wizard against the correct site and practitioner, linked to the client record and tagged as booked by AI. Staff edits always take priority. Hosted in Australia, live in about five days, no build fee and no setup fee. Available as text (Messenger, WhatsApp, Instagram, email, SMS and any channel you choose), booking portals, and voice (an AI phone receptionist); scoped to the number of clinic locations and quoted on a demo call.
 
 ## Who we serve
 Founders and growing businesses that want to cut labour costs and scale with AI automation, typically delivered within a few weeks. Every engagement starts with a free automation audit.
@@ -19,7 +19,7 @@ Founders and growing businesses that want to cut labour costs and scale with AI 
 ## Pages
 - Home: https://devstrum.com/
 - Services: https://devstrum.com/services
-- Fitting Wizard plugin: https://devstrum.com/products/fitting-wizard
+- Fitting Wizard Agent: https://devstrum.com/products/fitting-wizard
 - Work: https://devstrum.com/work
 - About: https://devstrum.com/about
 
@@ -27,4 +27,3 @@ Founders and growing businesses that want to cut labour costs and scale with AI 
 - Email: sumanth@devstrum.com
 - Phone: +64 22 199 74445
 - Website: https://devstrum.com
-- Entity: Devstrum LLP, India

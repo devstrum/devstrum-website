@@ -8,7 +8,7 @@ import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, BOOKING_URL, PAD_X, us
 const STEPS = [
   {
     tag: 'ANY HOUR', t: 'A patient enquires',
-    d: 'Through Facebook Messenger, WhatsApp, Instagram or your website — including the 9 pm to 2 am window where enquiries currently go unanswered until morning, if they come back at all.',
+    d: 'Through Facebook Messenger, WhatsApp, Instagram, email, SMS, your website — whichever channels you choose to run — including the 9 pm to 2 am window where enquiries currently go unanswered until morning, if they come back at all.',
   },
   {
     tag: 'ANSWERED INSTANTLY', t: 'The assistant qualifies and books',
@@ -23,7 +23,7 @@ const STEPS = [
 // No pricing on this page by design - it's quoted per practice on the demo call.
 // These describe what a subscription covers, without naming a number.
 const INCLUDED = [
-  ['Text', 'Facebook Messenger, WhatsApp and Instagram, answered instantly and booked straight into Fitting Wizard.'],
+  ['Text', 'Facebook Messenger, WhatsApp, Instagram, email, SMS and any other channel you choose — answered instantly and booked straight into Fitting Wizard.'],
   ['Booking portals', 'Public and private online booking off your website, running against the same real availability.'],
   ['Voice', 'An AI phone receptionist that answers, qualifies and books calls, with a generous monthly call allowance.'],
 ];
@@ -32,7 +32,7 @@ const TRUST = [
   ['Your staff always win', 'Any change your team makes directly in Fitting Wizard takes priority over the assistant. It never overwrites human decisions.'],
   ['Hosted in Australia', 'Patient data is processed and hosted on Australian infrastructure, handled in line with the Privacy Act and the Australian Privacy Principles.'],
   ['Built with the maker of Fitting Wizard', "The integration respects the Wizard's record locking, indexing and client linking, and is developed and tested directly with Biotronic."],
-  ['Live in about five days', 'We install the connector remotely, connect your Messenger and WhatsApp, and test with your team before anything is patient-facing. No hardware, no migration.'],
+  ['Live in about five days', 'We install the connector remotely, connect whichever channels you run, and test with your team before anything is patient-facing. No hardware, no migration.'],
 ];
 
 const FAQS = [
@@ -92,14 +92,14 @@ const FittingWizardPage = () => {
     <div style={{ background: bg, color: ink, fontFamily: '"Geist Mono", monospace', minHeight: '100%' }} data-screen-label="Fitting Wizard plugin">
       <SEO
         title="After-hours bookings for Fitting Wizard"
-        description="Patients book, reschedule and cancel through Messenger, WhatsApp or your website at any hour. The appointment lands in your Fitting Wizard — correct site, correct practitioner, linked to the client record and tagged for your staff. Built in partnership with Biotronic."
+        description="Patients book, reschedule and cancel through Messenger, WhatsApp, Instagram, email, SMS or your website at any hour. The appointment lands in your Fitting Wizard — correct site, correct practitioner, linked to the client record and tagged for your staff. Built in partnership with Biotronic and already live with a multi-clinic audiology chain in Melbourne."
         path="/products/fitting-wizard"
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'SoftwareApplication',
           name: 'Devstrum plugin for Fitting Wizard',
           applicationCategory: 'BusinessApplication',
-          description: 'An AI booking assistant for audiology clinics that answers patients on Messenger, WhatsApp, Instagram and the web at any hour, and creates correctly linked, tagged appointments inside Fitting Wizard.',
+          description: 'An AI booking assistant for audiology clinics that answers patients on Messenger, WhatsApp, Instagram, email, SMS and the web at any hour, and creates correctly linked, tagged appointments inside Fitting Wizard.',
           operatingSystem: 'Windows (Fitting Wizard, incl. remote desktop environments)',
           provider: { '@type': 'ProfessionalService', name: 'Devstrum' },
           areaServed: 'Australia',
@@ -123,12 +123,12 @@ const FittingWizardPage = () => {
         <CornerTicks />
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.1fr .9fr', gap: isMobile ? 48 : 56, alignItems: 'center', maxWidth: 1100, margin: '0 auto' }}>
           <Reveal>
-            <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 24 }}>THE FITTING WIZARD PLUGIN</div>
+            <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 24 }}>THE FITTING WIZARD AGENT</div>
             <h1 style={{ fontFamily: '"Geist", sans-serif', fontWeight: 600, fontSize: 'clamp(38px, 6.4vw, 64px)', lineHeight: .98, letterSpacing: '-0.05em', margin: '0 0 28px' }}>
               Your clinic closes at&nbsp;5.<br /><span style={{ color: accent }}>Your diary doesn't.</span>
             </h1>
             <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 18, lineHeight: 1.55, color: muted, margin: '0 0 36px', maxWidth: 560 }}>
-              Patients book, reschedule and cancel through Facebook Messenger, WhatsApp or your website at any hour. The appointment lands in your Fitting Wizard — correct site, correct practitioner, linked to the client record, tagged for your staff. Nothing about how you use the Wizard changes.
+              Patients book, reschedule and cancel through Facebook Messenger, WhatsApp, Instagram, email, SMS, your website — any channel you choose — at any hour. The appointment lands in your Fitting Wizard: correct site, correct practitioner, linked to the client record, tagged for your staff. Nothing about how you use the Wizard changes.
             </p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
@@ -156,7 +156,7 @@ const FittingWizardPage = () => {
       {/* The reference practice is deliberately unnamed. */}
       <Reveal as="section" style={{ padding: `28px ${PAD_X}`, borderTop: `1px solid ${ink}`, borderBottom: `1px solid ${rule}`, textAlign: 'center' }}>
         <p style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(17px, 2.4vw, 22px)', fontWeight: 500, letterSpacing: '-0.02em', lineHeight: 1.45, margin: '0 auto', maxWidth: 760 }}>
-          We're already working with <span style={{ color: accent }}>Fitting Wizard's largest client</span> — a multi-site audiology group running this across their locations.
+          We're live with <span style={{ color: accent }}>one of Fitting Wizard's largest clients</span> — a multi-clinic audiology chain in Melbourne, running across their locations.
         </p>
       </Reveal>
 
