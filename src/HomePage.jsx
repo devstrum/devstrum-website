@@ -1,4 +1,4 @@
-import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, BOOKING_URL, IntegrationsBanner, TrustedByBar, PartnersStrip, PAD_X, Reveal, SEO } from './theme.jsx';
+import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, BOOKING_URL, IntegrationsBanner, PartnersStrip, PAD_X, Reveal, SEO } from './theme.jsx';
 
 // HomePage - Devstrum homepage (fully centered layout)
 // Depends on: theme.jsx
@@ -66,9 +66,6 @@ const HomePage = () => {
           </div>
         </Reveal>
       </section>
-
-      {/* ─── TRUSTED BY ─── */}
-      <TrustedByBar center />
 
       {/* ─── AUSTRALIA ─── */}
       <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>

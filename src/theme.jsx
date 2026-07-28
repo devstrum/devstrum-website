@@ -262,10 +262,6 @@ const SiteNav = ({ active }) => {
   return (
   <React.Fragment>
   <style>{`
-    .ds-client-link img { filter: grayscale(1); opacity: .7; transition: filter .15s ease, opacity .15s ease; }
-    .ds-client-link span { color: ${THEME.muted}; transition: color .15s ease; }
-    .ds-client-link:hover img { filter: none; opacity: 1; }
-    .ds-client-link:hover span { color: ${THEME.ink}; }
     .ds-success-link span { transition: color .15s ease, border-color .15s ease; }
     .ds-success-link:hover span { color: ${THEME.ink}; border-color: ${THEME.accent}; }
     @keyframes ds-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -458,34 +454,6 @@ const IntegrationsBanner = ({ label = 'INTEGRATES WITH THE TOOLS YOU ALREADY RUN
   );
 };
 
-// Devstrum's clients
-const TRUSTED_BY = [
-  { name: 'SpotDraft', domain: 'spotdraft.com', href: 'https://spotdraft.com' },
-  { name: 'Amara Hospital', domain: 'amarahospital.com', href: 'https://amarahospital.com' },
-  { name: 'Peak Performance', domain: 'peakperformancesr.com', href: 'https://peakperformancesr.com' },
-  { name: 'Active Audiology', domain: 'activeaudiology.com.au', href: 'https://activeaudiology.com.au' },
-  { name: 'Prax Physio', domain: 'praxphysio.uk', href: 'https://praxphysio.uk' },
-  { name: 'House of Shafaq', domain: 'houseofshafaq.com', href: 'https://houseofshafaq.com' },
-  { name: 'Saad Sells', domain: null, href: 'https://www.instagram.com/saadsells' },
-];
-
-const TrustedByBar = ({ label = 'CLIENTS ACROSS AUSTRALIA · UK · UAE', center = true }) => {
-  const isMobile = useIsMobile();
-  return (
-  <div style={{ padding: `20px ${PAD_X}`, display: 'flex', flexDirection: (isMobile || center) ? 'column' : 'row', alignItems: 'center', gap: isMobile ? 14 : (center ? 16 : 24) }}>
-    <span style={{ fontSize: 10, color: THEME.muted, letterSpacing: '.2em', fontFamily: '"Geist Mono", monospace', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>{label}</span>
-    <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 20 : 32, flexWrap: 'wrap', justifyContent: 'center' }}>
-      {TRUSTED_BY.map((c) => (
-        <a key={c.name} href={c.href} target="_blank" rel="noopener" className="ds-client-link" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
-          <FaviconOrInitials name={c.name} domain={c.domain} size={18} />
-          <span style={{ fontFamily: '"Geist", sans-serif', fontWeight: 500, fontSize: 14, letterSpacing: '-0.01em' }}>{c.name}</span>
-        </a>
-      ))}
-    </div>
-  </div>
-  );
-};
-
 // Preferred-partner callout (Ringg + Meta) - use ONCE per page.
 // Laid out as the site's standard bordered card pair so the two partners read
 // as one centred block, rather than two blocks drifting to the page edges.
@@ -534,4 +502,4 @@ const PartnersStrip = ({ center = true }) => {
   );
 };
 
-export { THEME, gridBg, CornerTicks, DevstrumLogo, SiteNav, SiteFooter, NAV_LINKS, CONTACT, CONTACT_EMAIL, BOOKING_URL, IntegrationsBanner, TrustedByBar, PartnersStrip, FaviconOrInitials, TRUSTED_BY, INTEGRATIONS, PAD_X, useIsMobile, useCopyEmail, Reveal, CountUp, SEO, SITE_URL };
+export { THEME, gridBg, CornerTicks, DevstrumLogo, SiteNav, SiteFooter, NAV_LINKS, CONTACT, CONTACT_EMAIL, BOOKING_URL, IntegrationsBanner, PartnersStrip, FaviconOrInitials, INTEGRATIONS, PAD_X, useIsMobile, useCopyEmail, Reveal, CountUp, SEO, SITE_URL };
