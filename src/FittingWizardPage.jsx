@@ -180,23 +180,6 @@ const FittingWizardPage = () => {
         </div>
       </Reveal>
 
-      {/*
-        ─── ENDORSEMENT — HOLD ───
-        Francois has not approved this wording yet. Uncomment once he signs off
-        on the exact quote and attribution, and add it back to the page.
-
-        <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
-          <div style={{ maxWidth: 820, margin: '0 auto' }}>
-            <p style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(20px, 3.4vw, 30px)', fontWeight: 500, letterSpacing: '-0.02em', lineHeight: 1.35, margin: '0 0 24px' }}>
-              "<QUOTE PENDING APPROVAL>"
-            </p>
-            <div style={{ fontSize: 12, color: muted, letterSpacing: '.1em' }}>
-              FRANCOIS CAPMEIL · FOUNDER, BIOTRONIC · DEVELOPER OF FITTING WIZARD
-            </div>
-          </div>
-        </Reveal>
-      */}
-
       {/* ─── WHAT'S INCLUDED ─── */}
       {/* Deliberately no prices - quoted per practice on the demo call. */}
       <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
@@ -252,7 +235,15 @@ const FittingWizardPage = () => {
         </p>
       </Reveal>
 
-      <SiteFooter heading="Watch a booking land in" headingAccent="a live Fitting Wizard." ctaLabel="BOOK A 20-MIN DEMO →" />
+      <SiteFooter
+        heading="Watch a booking land in"
+        headingAccent="a live Fitting Wizard."
+        ctaLabel="BOOK A 20-MIN DEMO →"
+        testimonial={{
+          quote: "I built Fitting Wizard. I tested this myself against record locking, indexing and concurrent bookings, and it holds up. It's the first product of its kind I've been comfortable putting my name to.",
+          attribution: 'Francois Capmeil · Founder, Biotronic · developer of Fitting Wizard',
+        }}
+      />
     </div>
   );
 };

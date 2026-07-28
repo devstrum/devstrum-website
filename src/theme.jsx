@@ -236,7 +236,6 @@ const DevstrumLogo = ({ height = 22, onDark = false, accent = THEME.accent }) =>
 const CONTACT = {
   entity: 'AI automation studio',
   email: 'sumanth@devstrum.com',
-  phone: '+64 22 199 74445',
   website: 'devstrum.com',
 };
 
@@ -353,7 +352,14 @@ const SiteNav = ({ active }) => {
   );
 };
 
-const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.', center = true, ctaLabel = 'BOOK A FREE AUDIT →' }) => {
+// Default testimonial - swap via the `testimonial` prop for pages with a more
+// relevant endorsement (e.g. the Fitting Wizard page quotes Francois Capmeil).
+const DEFAULT_TESTIMONIAL = {
+  quote: "Every founder in my network asks me who's building their AI. Now I have an answer — Devstrum.",
+  attribution: 'Saad Mohammed · Founder, House of Shafaq · Devstrum supporter & client',
+};
+
+const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.', center = true, ctaLabel = 'BOOK A FREE AUDIT →', testimonial = DEFAULT_TESTIMONIAL }) => {
   return (
   <section id="contact" style={{ padding: `clamp(56px, 14vw, 120px) ${PAD_X}`, borderTop: `1px solid ${THEME.ink}`, textAlign: center ? 'center' : 'left' }}>
     <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(38px, 9vw, 88px)', fontWeight: 600, letterSpacing: '-0.05em', margin: '0 0 32px', lineHeight: 1 }}>
@@ -369,12 +375,12 @@ const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.
     </div>
     <div style={{ marginTop: 56, borderLeft: center ? 'none' : `2px solid ${THEME.accent}`, paddingLeft: center ? 0 : 20, maxWidth: 640, marginLeft: center ? 'auto' : 0, marginRight: center ? 'auto' : 0 }}>
       <p style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.45, margin: '0 0 10px', fontStyle: 'italic' }}>
-        "Every founder in my network asks me who's building their AI. Now I have an answer — Devstrum."
+        "{testimonial.quote}"
       </p>
-      <div style={{ fontSize: 12, color: THEME.muted, fontFamily: 'Inter, sans-serif' }}>Saad Mohammed · Founder, House of Shafaq · Devstrum supporter &amp; client</div>
+      <div style={{ fontSize: 12, color: THEME.muted, fontFamily: 'Inter, sans-serif' }}>{testimonial.attribution}</div>
     </div>
     <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 24, paddingTop: 32, borderTop: `1px solid ${THEME.rule}` }}>
-      {[['DEVSTRUM', CONTACT.entity], ['EMAIL', CONTACT.email], ['PHONE', CONTACT.phone], ['WEBSITE', CONTACT.website]].map(([l, v]) => (
+      {[['DEVSTRUM', CONTACT.entity], ['EMAIL', CONTACT.email], ['WEBSITE', CONTACT.website]].map(([l, v]) => (
         <div key={l}>
           <div style={{ fontSize: 10, color: THEME.accent, letterSpacing: '.15em', marginBottom: 6, fontFamily: '"Geist Mono", monospace' }}>{l}</div>
           <div style={{ fontSize: 13, color: THEME.ink, fontFamily: 'Inter, sans-serif', lineHeight: 1.4 }}>{v}</div>
