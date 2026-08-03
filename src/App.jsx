@@ -4,6 +4,7 @@ import ServicesPage from './ServicesPage.jsx';
 import CaseStudyPage from './CaseStudyPage.jsx';
 import AboutPage from './AboutPage.jsx';
 import FittingWizardPage from './FittingWizardPage.jsx';
+import PrivacyPolicyPage from './PrivacyPolicyPage.jsx';
 
 const App = () => (
   <BrowserRouter>
@@ -12,6 +13,7 @@ const App = () => (
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/work" element={<CaseStudyPage />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
       <Route path="/products/fitting-wizard" element={<FittingWizardPage />} />
       {/* Only one product today - /products lands on it rather than 404ing. */}
       <Route path="/products" element={<Navigate to="/products/fitting-wizard" replace />} />

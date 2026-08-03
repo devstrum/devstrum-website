@@ -394,6 +394,7 @@ const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.
       </div>
       <nav style={{ display: 'flex', gap: 20, fontSize: 11, color: THEME.muted, letterSpacing: '.1em', fontFamily: '"Geist Mono", monospace' }}>
         {NAV_LINKS.map(l => <a key={l.key} href={l.href} style={{ color: THEME.muted, textDecoration: 'none' }}>{l.label.toUpperCase()}</a>)}
+        <a href="/privacy-policy" style={{ color: THEME.muted, textDecoration: 'none' }}>PRIVACY POLICY</a>
       </nav>
     </footer>
   </section>
