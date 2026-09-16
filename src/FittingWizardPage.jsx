@@ -35,11 +35,85 @@ const TRUST = [
   ['Live in about five days', 'We install the connector remotely, connect whichever channels you run, and test with your team before anything is patient-facing. No hardware, no migration.'],
 ];
 
+const COMPARE_ROWS = [
+  ['Time to live', '—', '5 days', '4–6 months'],
+  ['Staff retraining', 'None', 'None', 'Every person, every site'],
+  ['Data migration risk', 'None', 'None', 'Full export and reimport'],
+  ['Answers the phone', '✕', '✓', '✕ (add-on, if available)'],
+  ['Facebook / Instagram / WhatsApp', '✕', '✓', 'Usually ✕'],
+  ['Online booking page', '✕', '✓', '✓'],
+  ['HSP / DVA voucher handling', '✓', '✓', 'Often ✕ (US-built)'],
+  ['Support in your time zone', '✓', '✓', 'Frequently offshore'],
+];
+
+// Plugin Catalog - everything listed here is live today; anything not yet
+// built lives in ROADMAP below instead, tagged "coming soon."
+const GROUPS = [
+  {
+    name: 'Answering patients and taking bookings',
+    items: [
+      ['A', 'AI Phone Receptionist', 'Answers your phone 24 hours a day, books, reschedules and cancels straight into Fitting Wizard. Passes urgent calls to a person.'],
+      ['B', 'Facebook Messenger Agent', 'Replies to your Facebook ad enquiries within seconds, day or night, and books the appointment.'],
+      ['C', 'Instagram Agent', 'The same, for enquiries that come through Instagram.'],
+      ['D', 'WhatsApp Agent', 'The same on WhatsApp, and it can message patients first. We set up your WhatsApp Business account.'],
+      ['E', 'SMS Agent', 'The same over plain text message, for patients who do not use apps.'],
+      ['F', 'Email Agent', 'Reads your clinic inbox, replies to enquiries and books them in.'],
+      ['G', 'Online Booking Page & Website Chat', 'A booking page on your website showing your real availability, plus a chat box that answers questions and books.'],
+      ['H', 'GP & Referrer Portal', 'Reserved slots for the two or three referrers you have a real relationship with, so a GP who rings about an urgent patient can book it themselves.'],
+    ],
+  },
+  {
+    name: 'Keeping the diary full',
+    items: [
+      ['I', 'Reminders & No-Show Prevention', 'Confirmation requests before the appointment.'],
+      ['R', 'Waitlist & Cancellation Backfill', 'When a slot frees up, it is offered to the waiting list automatically and the first to accept takes it.'],
+      ['J', 'Automatic Recalls', 'Patients contacted when their annual review, device check or HSP voucher is due. Checks Fitting Wizard first so nobody is called who was just seen.'],
+      ['L', 'Google Review Requests', 'Sent automatically after a completed appointment.'],
+      ['U', 'Missed-Call Text-Back', 'The phone rings out because the front desk is on another line. Within thirty seconds the caller gets a text with a booking link.'],
+    ],
+  },
+  {
+    name: 'Paperwork and payments',
+    items: [
+      ['M', 'Paperless Forms & Signatures', 'Consent forms, HSP forms, quotes and history forms signed on an iPad or by link, filed straight into the patient record.'],
+      ['N', 'Payments & Deposits', 'Take a deposit at booking or send a payment link afterwards.'],
+      ['T', 'HSP & DVA Voucher Tracking', 'Voucher expiry alerts, claim status, and renewal prompts.'],
+      ['V', 'Patient File Transfer & Archive', 'Encrypted patient-file transfer on relocation, integrity checking on save, and bulk archive that actually completes.'],
+    ],
+  },
+  {
+    name: 'Practice-wide',
+    items: [
+      ['K', 'Patient Reactivation Campaigns', 'Message an old list in one go, for example everyone from last year, inviting them back for a check.'],
+      ['O', 'Owner Dashboard', 'Revenue month by month, bookings, cancellations, no-shows, devices sold, and which advertising actually brought patients in.'],
+      ['W', 'Referrer Performance Reporting', 'Which GPs and partners send patients, how many convert, which relationships are worth investing in.'],
+      ['X', 'Trial, Aftercare & Retention Sequences', 'Structured follow-up during a hearing aid trial to lift conversion and cut returns, then aftercare at defined intervals post-fitting.'],
+      ['Y', 'Accessory Reorder & Repair Status', "Battery, dome and accessory reorder prompts over the patient's preferred channel, plus automatic status updates as a repair moves through the manufacturer."],
+      ['Z', 'Patient Portal', 'Patients see and manage their own appointments and history.'],
+    ],
+  },
+  {
+    name: 'Other things we build',
+    items: [
+      ['P', 'Website Rebuild', 'If your website is dated, we rebuild it with the booking system built in.'],
+    ],
+  },
+];
+
+const ROADMAP = [
+  ['Medical Objects referral intake', 'Ingests a Medical Objects referral, or a scanned referral letter, and creates the Fitting Wizard record automatically instead of it getting lost in the inbox.'],
+  ['Duplicate prevention & record hygiene', 'A deterministic patient ID built from name and phone number, so two patients with the same name are never merged or mismatched.'],
+  ['Clinical notes capture', 'Integrating with the dictation tool your audiologists already use, so notes file straight into the Fitting Wizard patient record.'],
+];
+
 const FAQS = [
   ['Does anything change in how we use Fitting Wizard?', "No. Your Wizard, your data and your workflow stay exactly as they are. The assistant creates properly linked, tagged appointments alongside your team's — it doesn't replace anything your staff do."],
   ['What if the assistant books something wrong?', 'Every automated appointment is tagged so your front desk can spot it instantly. Your staff can move, edit or cancel it like any other appointment, and their change always takes priority.'],
   ['We run multiple clinics on one server. Does that work?', 'Yes. The connector is installed per system, including Habitat3-hosted and other remote-desktop environments, and books against the correct site and practitioner for each location.'],
+  ['How does it handle pensioner, HSP and DVA patients?', 'It asks the funding question during booking and tags it in Fitting Wizard. Your team still does the HSP portal work, because that is a government system and it should stay with a person.'],
+  ['What if two patients have the same name?', 'Every record gets a deterministic patient ID built from the name and phone number, so the agent matches the right person or creates a new record.'],
   ['How long does setup take?', "Once you've seen a demo and are happy to proceed, most practices are live in about five days. We install the connector remotely, connect your channels, and test with your team before anything is patient-facing."],
+  ['What does it cost?', 'It depends on which channels you actually use — sized to your practice on the demo call, not published as a flat rate.'],
   ['Who supports it?', 'Devstrum supports the plugin during Australian business hours. Biotronic remains your support contact for Fitting Wizard itself, exactly as today.'],
 ];
 
@@ -141,9 +215,20 @@ const FittingWizardPage = () => {
                   HOW IT WORKS
                 </button>
               </a>
+              <a href="https://wa.me/64221997445" target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
+                <button style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '18px 24px', background: '#25D366', color: '#fff', border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.15em', fontFamily: 'inherit', cursor: 'pointer' }}>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.39a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.78.97-.15.17-.29.19-.54.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.24-.87.85-.87 2.08s.89 2.41 1.02 2.58c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.11-.23-.17-.48-.29Z"/>
+                  </svg>
+                  WHATSAPP US
+                </button>
+              </a>
             </div>
             <p style={{ fontFamily: '"Geist Mono", monospace', fontSize: 11, color: muted, letterSpacing: '.1em', marginTop: 24, lineHeight: 1.8 }}>
               LIVE IN ABOUT 5 DAYS · HOSTED IN AUSTRALIA · NO BUILD FEE, NO SETUP FEE
+            </p>
+            <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, color: muted, marginTop: 10 }}>
+              Or call the team directly: <a href="tel:+61468093675" style={{ color: ink, borderBottom: `1px solid ${accent}`, textDecoration: 'none' }}>+61 468 093 675</a>
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -195,6 +280,83 @@ const FittingWizardPage = () => {
             <div key={t} style={{ background: bg, padding: 32 }}>
               <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 18, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 12 }}>{t}</div>
               <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.65, color: muted, margin: 0 }}>{d}</p>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+
+      {/* ─── SHOULD YOU SWITCH INSTEAD ─── */}
+      <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
+        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>THE ALTERNATIVE</div>
+        <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 16px', maxWidth: 760 }}>
+          The migration you are considering costs more than you think.
+        </h2>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 16, lineHeight: 1.6, color: muted, maxWidth: 700, margin: '0 auto 48px' }}>
+          Switching practice management systems is a four-to-six-month operations project, not a software decision. Devstrum goes live in five days on the Fitting Wizard your team already knows.
+        </p>
+        <div style={{ overflowX: 'auto', maxWidth: 1000, margin: '0 auto' }}>
+          <table style={{ width: '100%', minWidth: 600, borderCollapse: 'collapse', textAlign: 'left', fontFamily: 'Inter, sans-serif', fontSize: 13.5 }}>
+            <thead>
+              <tr>
+                <th style={{ padding: '10px 14px', borderBottom: `2px solid ${ink}`, fontFamily: '"Geist Mono", monospace', fontSize: 10.5, letterSpacing: '.1em', color: muted }}></th>
+                <th style={{ padding: '10px 14px', borderBottom: `2px solid ${ink}`, fontFamily: '"Geist Mono", monospace', fontSize: 10.5, letterSpacing: '.1em' }}>STAY ON FW</th>
+                <th style={{ padding: '10px 14px', borderBottom: `2px solid ${ink}`, fontFamily: '"Geist Mono", monospace', fontSize: 10.5, letterSpacing: '.1em', color: accent }}>FW + DEVSTRUM</th>
+                <th style={{ padding: '10px 14px', borderBottom: `2px solid ${ink}`, fontFamily: '"Geist Mono", monospace', fontSize: 10.5, letterSpacing: '.1em', color: muted }}>MIGRATE TO CLOUD PMS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPARE_ROWS.map(([label, a, b, c], i) => (
+                <tr key={label} style={{ background: i % 2 ? 'rgba(14,26,43,.03)' : 'transparent' }}>
+                  <td style={{ padding: '10px 14px', fontWeight: 500 }}>{label}</td>
+                  <td style={{ padding: '10px 14px', color: muted }}>{a}</td>
+                  <td style={{ padding: '10px 14px', color: ink, fontWeight: 600 }}>{b}</td>
+                  <td style={{ padding: '10px 14px', color: muted }}>{c}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <a href="#catalogue" style={{ display: 'inline-block', marginTop: 28, fontSize: 12, color: muted, letterSpacing: '.1em', textDecoration: 'none', borderBottom: `1px solid ${accent}`, paddingBottom: 3, fontFamily: '"Geist Mono", monospace' }}>SEE THE FULL PLUGIN CATALOG →</a>
+      </Reveal>
+
+      {/* ─── PLUGIN CATALOG ─── */}
+      <div id="catalogue" style={{ scrollMarginTop: 60 }} />
+      {GROUPS.map((group) => (
+        <Reveal as="section" key={group.name} style={{ padding: `clamp(40px, 8vw, 64px) ${PAD_X}`, borderTop: `1px solid ${ink}` }}>
+          <div style={{ maxWidth: 900, margin: '0 auto' }}>
+            <div style={{ fontSize: 11, color: accent, letterSpacing: '.2em', marginBottom: 24, fontFamily: '"Geist Mono", monospace' }}>{group.name.toUpperCase()}</div>
+            <div style={{ display: 'grid', gap: 1, background: rule, border: `1px solid ${rule}` }}>
+              {group.items.map(([k, n, d]) => (
+                <div key={k} id={`plugin-${k.toLowerCase()}`} style={{ background: bg, padding: isMobile ? '16px 14px' : '18px 22px', display: 'flex', gap: 18, scrollMarginTop: 80, textAlign: 'left' }}>
+                  <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 12, color: accent, flexShrink: 0, width: 18, paddingTop: 3 }}>{k}</div>
+                  <div>
+                    <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 600, letterSpacing: '-0.01em', marginBottom: 5 }}>{n}</div>
+                    <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.6, color: muted, margin: 0 }}>{d}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      ))}
+
+      {/* ─── COMING SOON ─── */}
+      <Reveal as="section" style={{ padding: `clamp(40px, 8vw, 64px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
+        <div style={{ fontSize: 11, color: muted, letterSpacing: '.2em', marginBottom: 20, fontFamily: '"Geist Mono", monospace' }}>COMING SOON</div>
+        <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(22px, 4vw, 30px)', fontWeight: 600, letterSpacing: '-0.02em', margin: '0 auto 12px', maxWidth: 600 }}>
+          Launching in the next few weeks.
+        </h2>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.6, color: muted, maxWidth: 560, margin: '0 auto 28px' }}>
+          Everything above is live today. Ask on the demo call for a firm date on these.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto', textAlign: 'left' }}>
+          {ROADMAP.map(([t, d]) => (
+            <div key={t} style={{ background: 'rgba(14,26,43,.03)', padding: 22 }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
+                <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 15.5, fontWeight: 600, color: muted }}>{t}</div>
+                <span style={{ fontSize: 9, color: muted, border: `1px solid ${rule}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace', letterSpacing: '.08em', whiteSpace: 'nowrap' }}>COMING SOON</span>
+              </div>
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.6, color: muted, margin: 0 }}>{d}</p>
             </div>
           ))}
         </div>
