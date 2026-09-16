@@ -1,4 +1,4 @@
-import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, BOOKING_URL, PAD_X, useIsMobile, Reveal, SEO } from './theme.jsx';
+import { THEME, gridBg, CornerTicks, SiteNav, SiteFooter, PAD_X, useIsMobile, Reveal, SEO } from './theme.jsx';
 
 // FittingWizardPage - product page for the Fitting Wizard plugin, built in
 // partnership with Biotronic (the makers of Fitting Wizard). Linked from the
@@ -63,50 +63,47 @@ const GROUPS = [
   {
     name: 'Answering patients and taking bookings',
     items: [
-      ['A', 'AI Phone Receptionist', 'Answers your phone 24 hours a day, books, reschedules and cancels straight into Fitting Wizard. Passes urgent calls to a person.'],
-      ['B', 'Facebook Messenger Agent', 'Replies to your Facebook ad enquiries within seconds, day or night, and books the appointment.'],
-      ['C', 'Instagram Agent', 'The same, for enquiries that come through Instagram.'],
-      ['D', 'WhatsApp Agent', 'The same on WhatsApp, and it can message patients first. We set up your WhatsApp Business account.'],
-      ['E', 'SMS Agent', 'The same over plain text message, for patients who do not use apps.'],
-      ['F', 'Email Agent', 'Reads your clinic inbox, replies to enquiries and books them in.'],
-      ['G', 'Online Booking Page & Website Chat', 'A booking page on your website showing your real availability, plus a chat box that answers questions and books.'],
-      ['H', 'GP & Referrer Portal', 'Reserved slots for the two or three referrers you have a real relationship with, so a GP who rings about an urgent patient can book it themselves.'],
+      ['A', 'Online Booking Page', 'A booking page on your website showing your real availability. Patients pick a time themselves and it writes straight into Fitting Wizard.'],
+      ['B', 'GP & Referrer Portal', 'Your referring GPs log in, see only your free slots and book the patient themselves. They never see patient information.'],
+      ['C', 'SMS Agent', 'Replies to enquiries over plain text message and books them in, for patients who do not use apps.'],
+      ['D', 'Facebook Messenger Agent', 'Replies to your Facebook ad enquiries within seconds, day or night, and books the appointment.'],
+      ['E', 'WebChat', 'A chat box on your website that answers questions, qualifies the enquiry and books the appointment.'],
+      ['F', 'Instagram Agent', 'The same, for enquiries that come through Instagram.'],
+      ['G', 'WhatsApp Agent', 'The same on WhatsApp, and it can message patients first. We set up your WhatsApp Business account.'],
+      ['H', 'Email Agent', 'Reads your clinic inbox, replies to enquiries and books them in.'],
+      ['I', 'AI Phone Receptionist', 'Answers your phone 24 hours a day, books, reschedules and cancels straight into Fitting Wizard. Passes urgent calls to a person.'],
     ],
   },
   {
     name: 'Keeping the diary full',
     items: [
-      ['I', 'Reminders & No-Show Prevention', 'Confirmation requests before the appointment.'],
-      ['J', 'Waitlist & Cancellation Backfill', 'When a slot frees up, it is offered to the waiting list automatically and the first to accept takes it.'],
-      ['K', 'Automatic Recalls', 'Patients contacted when their annual review, device check or HSP voucher is due. Checks Fitting Wizard first so nobody is called who was just seen.'],
+      ['J', 'Reminders & No-Show Prevention', 'Confirmation requests before the appointment, and any slot that frees up is offered to your waiting list.'],
+      ['K', 'Accurate Recalls', 'Patients contacted when their annual review, device check or HSP voucher is due. Checks Fitting Wizard first so nobody is called who was just seen.'],
       ['L', 'Google Review Requests', 'Sent automatically after a completed appointment.'],
-      ['M', 'Missed-Call Text-Back', 'The phone rings out because the front desk is on another line. Within thirty seconds the caller gets a text with a booking link.'],
     ],
   },
   {
     name: 'Paperwork and payments',
     items: [
-      ['N', 'Paperless Forms & Signatures', 'Consent forms, HSP forms, quotes and history forms signed on an iPad or by link, filed straight into the patient record.'],
-      ['O', 'Payments & Deposits', 'Take a deposit at booking or send a payment link afterwards.'],
-      ['P', 'HSP & DVA Voucher Tracking', 'Voucher expiry alerts, claim status, and renewal prompts.'],
-      ['Q', 'Patient File Transfer & Archive', 'Encrypted patient-file transfer on relocation, integrity checking on save, and bulk archive that actually completes.'],
+      ['M', 'Payments & Deposits', 'Take a deposit at booking or send a payment link afterwards.'],
     ],
   },
   {
     name: 'Practice-wide',
     items: [
-      ['R', 'Patient Reactivation Campaigns', 'Message an old list in one go, for example everyone from last year, inviting them back for a check.'],
-      ['S', 'Owner Dashboard', 'Revenue month by month, bookings, cancellations, no-shows, devices sold, and which advertising actually brought patients in.'],
-      ['T', 'Referrer Performance Reporting', 'Which GPs and partners send patients, how many convert, which relationships are worth investing in.'],
-      ['U', 'Trial, Aftercare & Retention Sequences', 'Structured follow-up during a hearing aid trial to lift conversion and cut returns, then aftercare at defined intervals post-fitting.'],
-      ['V', 'Accessory Reorder & Repair Status', "Battery, dome and accessory reorder prompts over the patient's preferred channel, plus automatic status updates as a repair moves through the manufacturer."],
-      ['W', 'Patient Portal', 'Patients see and manage their own appointments and history.'],
+      ['N', 'Reactivation Campaigns', 'Message an old list in one go, for example everyone from last year, inviting them back for a check.'],
+      ['O', 'Owner Dashboard', 'Revenue month by month, bookings, cancellations, no-shows, devices sold, and which advertising actually brought patients in.'],
     ],
   },
   {
-    name: 'Other things we build',
+    name: 'Other things we do',
+    note: "Scoped and quoted separately, once we know what your site or inbox actually needs.",
     items: [
-      ['X', 'Website Rebuild', 'If your website is dated, we rebuild it with the booking system built in.'],
+      ['P', 'Paperless Forms & Signatures', "Consent forms, HSP and NDIS paperwork, quotes and history forms signed on an iPad or by link and filed back into the patient record. Every practice's forms are different, so we design yours with you.", true],
+      ['Q', 'Accounting Integration', 'Sales pushed from Fitting Wizard straight into Xero, MYOB or QuickBooks, so nobody is exporting a template and re-accepting every invoice by hand.', true],
+      ['R', 'Website Rebuild', 'If your website is dated, we rebuild it with the booking system built in, so patients can book directly from your homepage.'],
+      ['S', 'Server & Network Setup', 'If Fitting Wizard runs on a remote desktop server, a home network or anything non-standard, we do a technical check first and quote the connection work.'],
+      ['T', 'Email & IT Support', 'Fixing email that bounces or goes missing, setting up a proper business email address, and looking after it from there.'],
     ],
   },
 ];
@@ -216,7 +213,7 @@ const FittingWizardPage = () => {
               Patients book, reschedule and cancel through Facebook Messenger, WhatsApp, Instagram, email, SMS, your website — any channel you choose — at any hour. The appointment lands in your Fitting Wizard: correct site, correct practitioner, linked to the client record, tagged for your staff. Nothing about how you use the Wizard changes.
             </p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
+              <a href="/demo" style={{ textDecoration: 'none' }}>
                 <button style={{ padding: '18px 28px', background: ink, color: bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.15em', fontFamily: 'inherit', cursor: 'pointer' }}>
                   SEE A BOOKING LAND IN FITTING WIZARD →
                 </button>
@@ -360,13 +357,21 @@ const FittingWizardPage = () => {
       {GROUPS.map((group) => (
         <Reveal as="section" key={group.name} style={{ padding: `clamp(40px, 8vw, 64px) ${PAD_X}`, borderTop: `1px solid ${ink}` }}>
           <div style={{ maxWidth: 900, margin: '0 auto' }}>
-            <div style={{ fontSize: 11, color: accent, letterSpacing: '.2em', marginBottom: 24, fontFamily: '"Geist Mono", monospace' }}>{group.name.toUpperCase()}</div>
+            <div style={{ fontSize: 11, color: accent, letterSpacing: '.2em', marginBottom: group.note ? 10 : 24, fontFamily: '"Geist Mono", monospace' }}>{group.name.toUpperCase()}</div>
+            {group.note && (
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.6, color: muted, margin: '0 0 24px' }}>{group.note}</p>
+            )}
             <div style={{ display: 'grid', gap: 1, background: rule, border: `1px solid ${rule}` }}>
-              {group.items.map(([k, n, d]) => (
+              {group.items.map(([k, n, d, askUs]) => (
                 <div key={k} id={`plugin-${k.toLowerCase()}`} style={{ background: bg, padding: isMobile ? '16px 14px' : '18px 22px', display: 'flex', gap: 18, scrollMarginTop: 80, textAlign: 'left' }}>
                   <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 12, color: accent, flexShrink: 0, width: 18, paddingTop: 3 }}>{k}</div>
                   <div>
-                    <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 600, letterSpacing: '-0.01em', marginBottom: 5 }}>{n}</div>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 5 }}>
+                      <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 600, letterSpacing: '-0.01em' }}>{n}</div>
+                      {askUs && (
+                        <span style={{ fontSize: 9, color: muted, border: `1px solid ${rule}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace', letterSpacing: '.08em', whiteSpace: 'nowrap' }}>ASK US</span>
+                      )}
+                    </div>
                     <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.6, color: muted, margin: 0 }}>{d}</p>
                   </div>
                 </div>

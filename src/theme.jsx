@@ -251,7 +251,11 @@ const NAV_LINKS = [
 
 const CONTACT_EMAIL = 'sumanth@devstrum.com';
 // "Book a free audit" CTAs open this Google Calendar appointment page in a new tab.
+// Kept as the fallback DemoPage uses until CALENDLY_URL below is set, at which
+// point it embeds Calendly instead (Google's scheduler sends
+// X-Frame-Options: sameorigin, so it can never be embedded).
 const BOOKING_URL = 'https://calendar.app.google/oUsGs4GDQw5cNn4E8';
+const CALENDLY_URL = 'https://calendly.com/sumanth-devstrum/30min';
 
 const SiteNav = ({ active }) => {
   const isMobile = useIsMobile();
@@ -297,7 +301,7 @@ const SiteNav = ({ active }) => {
             </a>
           ))}
         </nav>
-        <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
+        <a href="/demo" style={{ textDecoration: 'none' }}>
           <button style={{ padding: '8px 16px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 11, fontWeight: 600, letterSpacing: '.15em', fontFamily: 'inherit', cursor: 'pointer', whiteSpace: 'nowrap' }}>
             BOOK AUDIT
           </button>
@@ -307,7 +311,7 @@ const SiteNav = ({ active }) => {
 
     {isMobile && (
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-        <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none', flexShrink: 0 }}>
+        <a href="/demo" style={{ textDecoration: 'none', flexShrink: 0 }}>
           <button style={{ padding: '8px 12px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 10, fontWeight: 600, letterSpacing: '.1em', fontFamily: 'inherit', cursor: 'pointer', whiteSpace: 'nowrap' }}>
             BOOK AUDIT
           </button>
@@ -341,7 +345,7 @@ const SiteNav = ({ active }) => {
           {l.label}
         </a>
       ))}
-      <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none', marginTop: 16 }}>
+      <a href="/demo" onClick={() => setOpen(false)} style={{ textDecoration: 'none', marginTop: 16 }}>
         <button style={{ width: '100%', padding: '14px 16px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.15em', fontFamily: 'inherit', cursor: 'pointer' }}>
           BOOK AUDIT
         </button>
@@ -366,7 +370,7 @@ const SiteFooter = ({ heading = "Let's build your", headingAccent = 'automation.
       {heading}<br /><span style={{ color: THEME.accent }}>{headingAccent}</span>
     </h2>
     <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap', justifyContent: center ? 'center' : 'flex-start' }}>
-      <a href={BOOKING_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none' }}>
+      <a href="/demo" style={{ textDecoration: 'none' }}>
         <button style={{ padding: '18px 28px', background: THEME.ink, color: THEME.bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.2em', fontFamily: 'inherit', cursor: 'pointer' }}>{ctaLabel}</button>
       </a>
       <span style={{ fontSize: 13, color: THEME.muted, fontFamily: '"Geist Mono", monospace' }}>
@@ -509,4 +513,4 @@ const PartnersStrip = ({ center = true }) => {
   );
 };
 
-export { THEME, gridBg, CornerTicks, DevstrumLogo, SiteNav, SiteFooter, NAV_LINKS, CONTACT, CONTACT_EMAIL, BOOKING_URL, IntegrationsBanner, PartnersStrip, FaviconOrInitials, INTEGRATIONS, PAD_X, useIsMobile, useCopyEmail, Reveal, CountUp, SEO, SITE_URL };
+export { THEME, gridBg, CornerTicks, DevstrumLogo, SiteNav, SiteFooter, NAV_LINKS, CONTACT, CONTACT_EMAIL, BOOKING_URL, CALENDLY_URL, IntegrationsBanner, PartnersStrip, FaviconOrInitials, INTEGRATIONS, PAD_X, useIsMobile, useCopyEmail, Reveal, CountUp, SEO, SITE_URL };
