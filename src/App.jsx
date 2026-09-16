@@ -7,6 +7,7 @@ import AboutPage from './AboutPage.jsx';
 import FittingWizardPage from './FittingWizardPage.jsx';
 import DemoPage from './DemoPage.jsx';
 import PrivacyPolicyPage from './PrivacyPolicyPage.jsx';
+import Analytics from './Analytics.jsx';
 import { captureClickId } from './tracking.js';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
 
   return (
   <BrowserRouter>
+    <Analytics />
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/services" element={<ServicesPage />} />
