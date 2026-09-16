@@ -28,6 +28,17 @@ const INCLUDED = [
   ['Voice', 'An AI phone receptionist that answers, qualifies and books calls, with a generous monthly call allowance.'],
 ];
 
+const CHANNELS = ['Phone', 'Facebook Messenger', 'Website booking', 'Email', 'SMS', 'WhatsApp', 'Instagram', 'GP referral'];
+
+const PROOF_TILES = [
+  ['Answers every call', '24 hours, seven days. Books, reschedules and cancels straight into Fitting Wizard. Hands anything urgent or clinical to a person immediately.'],
+  ['Replies to your ads in seconds', 'A Facebook enquiry at 11pm gets a reply at 11pm, with real availability, and a confirmed appointment before they close the app.'],
+  ['Fills the slot that just opened', 'A cancellation is offered to your waiting list automatically. The diary refills without anyone picking up the phone.'],
+  ['Gets the recall right', 'Checks Fitting Wizard nightly before it contacts anyone, so the patient you saw last month is never asked to come in for an annual review.'],
+  ['Knows HSP, DVA and private apart', 'Asks the funding question up front, tags it correctly in Fitting Wizard, and leaves the government portal work to your team, where it belongs.'],
+  ['Shows you the month', 'Revenue by month, by site, by clinician, by device. Not a three-month cumulative figure you have to re-run and paste into Excel.'],
+];
+
 const TRUST = [
   ['Your staff always win', 'Any change your team makes directly in Fitting Wizard takes priority over the assistant. It never overwrites human decisions.'],
   ['Hosted in Australia', 'Patient data is processed and hosted on Australian infrastructure, handled in line with the Privacy Act and the Australian Privacy Principles.'],
@@ -66,36 +77,36 @@ const GROUPS = [
     name: 'Keeping the diary full',
     items: [
       ['I', 'Reminders & No-Show Prevention', 'Confirmation requests before the appointment.'],
-      ['R', 'Waitlist & Cancellation Backfill', 'When a slot frees up, it is offered to the waiting list automatically and the first to accept takes it.'],
-      ['J', 'Automatic Recalls', 'Patients contacted when their annual review, device check or HSP voucher is due. Checks Fitting Wizard first so nobody is called who was just seen.'],
+      ['J', 'Waitlist & Cancellation Backfill', 'When a slot frees up, it is offered to the waiting list automatically and the first to accept takes it.'],
+      ['K', 'Automatic Recalls', 'Patients contacted when their annual review, device check or HSP voucher is due. Checks Fitting Wizard first so nobody is called who was just seen.'],
       ['L', 'Google Review Requests', 'Sent automatically after a completed appointment.'],
-      ['U', 'Missed-Call Text-Back', 'The phone rings out because the front desk is on another line. Within thirty seconds the caller gets a text with a booking link.'],
+      ['M', 'Missed-Call Text-Back', 'The phone rings out because the front desk is on another line. Within thirty seconds the caller gets a text with a booking link.'],
     ],
   },
   {
     name: 'Paperwork and payments',
     items: [
-      ['M', 'Paperless Forms & Signatures', 'Consent forms, HSP forms, quotes and history forms signed on an iPad or by link, filed straight into the patient record.'],
-      ['N', 'Payments & Deposits', 'Take a deposit at booking or send a payment link afterwards.'],
-      ['T', 'HSP & DVA Voucher Tracking', 'Voucher expiry alerts, claim status, and renewal prompts.'],
-      ['V', 'Patient File Transfer & Archive', 'Encrypted patient-file transfer on relocation, integrity checking on save, and bulk archive that actually completes.'],
+      ['N', 'Paperless Forms & Signatures', 'Consent forms, HSP forms, quotes and history forms signed on an iPad or by link, filed straight into the patient record.'],
+      ['O', 'Payments & Deposits', 'Take a deposit at booking or send a payment link afterwards.'],
+      ['P', 'HSP & DVA Voucher Tracking', 'Voucher expiry alerts, claim status, and renewal prompts.'],
+      ['Q', 'Patient File Transfer & Archive', 'Encrypted patient-file transfer on relocation, integrity checking on save, and bulk archive that actually completes.'],
     ],
   },
   {
     name: 'Practice-wide',
     items: [
-      ['K', 'Patient Reactivation Campaigns', 'Message an old list in one go, for example everyone from last year, inviting them back for a check.'],
-      ['O', 'Owner Dashboard', 'Revenue month by month, bookings, cancellations, no-shows, devices sold, and which advertising actually brought patients in.'],
-      ['W', 'Referrer Performance Reporting', 'Which GPs and partners send patients, how many convert, which relationships are worth investing in.'],
-      ['X', 'Trial, Aftercare & Retention Sequences', 'Structured follow-up during a hearing aid trial to lift conversion and cut returns, then aftercare at defined intervals post-fitting.'],
-      ['Y', 'Accessory Reorder & Repair Status', "Battery, dome and accessory reorder prompts over the patient's preferred channel, plus automatic status updates as a repair moves through the manufacturer."],
-      ['Z', 'Patient Portal', 'Patients see and manage their own appointments and history.'],
+      ['R', 'Patient Reactivation Campaigns', 'Message an old list in one go, for example everyone from last year, inviting them back for a check.'],
+      ['S', 'Owner Dashboard', 'Revenue month by month, bookings, cancellations, no-shows, devices sold, and which advertising actually brought patients in.'],
+      ['T', 'Referrer Performance Reporting', 'Which GPs and partners send patients, how many convert, which relationships are worth investing in.'],
+      ['U', 'Trial, Aftercare & Retention Sequences', 'Structured follow-up during a hearing aid trial to lift conversion and cut returns, then aftercare at defined intervals post-fitting.'],
+      ['V', 'Accessory Reorder & Repair Status', "Battery, dome and accessory reorder prompts over the patient's preferred channel, plus automatic status updates as a repair moves through the manufacturer."],
+      ['W', 'Patient Portal', 'Patients see and manage their own appointments and history.'],
     ],
   },
   {
     name: 'Other things we build',
     items: [
-      ['P', 'Website Rebuild', 'If your website is dated, we rebuild it with the booking system built in.'],
+      ['X', 'Website Rebuild', 'If your website is dated, we rebuild it with the booking system built in.'],
     ],
   },
 ];
@@ -236,6 +247,31 @@ const FittingWizardPage = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* ─── WHAT DEVSTRUM DOES ─── */}
+      <Reveal as="section" style={{ padding: `clamp(48px, 9vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
+        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16, fontFamily: '"Geist Mono", monospace' }}>WHAT DEVSTRUM DOES</div>
+        <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 40px', maxWidth: 700 }}>
+          Every way a patient reaches you, one system.
+        </h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginBottom: 16 }}>
+          {CHANNELS.map(c => (
+            <span key={c} style={{ fontFamily: '"Geist Mono", monospace', fontSize: 11, color: muted, border: `1px solid ${rule}`, borderRadius: 3, padding: '5px 10px' }}>{c}</span>
+          ))}
+        </div>
+        <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 18, color: accent, margin: '10px 0' }}>↓</div>
+        <div style={{ display: 'inline-block', fontFamily: '"Geist Mono", monospace', fontSize: 12, letterSpacing: '.15em', color: '#fff', background: ink, borderRadius: 3, padding: '10px 22px', marginBottom: 10 }}>DEVSTRUM</div>
+        <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 18, color: accent, margin: '10px 0' }}>↓</div>
+        <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 12, letterSpacing: '.1em', color: ink, marginBottom: 48 }}>YOUR FITTING WIZARD · DASHBOARD · REMINDERS · RECALLS · REVIEWS</div>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto', textAlign: 'left' }}>
+          {PROOF_TILES.map(([t, d]) => (
+            <div key={t} style={{ background: bg, padding: 28 }}>
+              <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 19, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 10 }}>{t}</div>
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.6, color: muted, margin: 0 }}>{d}</p>
+            </div>
+          ))}
+        </div>
+      </Reveal>
 
       {/* ─── PROOF ─── */}
       {/* The reference practice is deliberately unnamed. */}
