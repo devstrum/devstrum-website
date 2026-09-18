@@ -52,44 +52,47 @@ const COMPARE_ROWS = [
 // Packages - cumulative tiers (Growth = Basic + more, Premium = Growth +
 // more). No pricing on this page by design - quoted per practice on the
 // demo call. Each card ends in a Book a Demo button instead of a price.
+// Each item is [what it costs you if you don't have this, the feature that
+// fixes it, how]. The first part carries the weight - a practice owner
+// weighs the subscription cost against what happens if they do nothing,
+// not against a list of feature names.
 const PACKAGES = [
   {
     tier: 'Basic',
-    tagline: 'Get found, get booked, get reviewed.',
-    plus: 'What you get',
+    tagline: "Every patient who wants to book, books — even at 9pm, even from a Google ad.",
+    plus: 'What this changes',
     items: [
-      ['Online booking page', 'on your website, showing your real availability. Patients pick a time themselves and it writes straight into Fitting Wizard — including anyone arriving from a paid ad.'],
-      ['Appointment confirmations by text', 'before every visit, so you know who is coming before the day.'],
-      ['Google review requests', 'sent automatically after a completed appointment.'],
+      ['Stop the logistical overload.', 'Online booking page', 'on your website showing your real availability. Patients book themselves in at any hour, including anyone arriving from a paid ad, so your front desk stops being the bottleneck between an interested patient and a booked appointment.'],
+      ['Reduce no-shows drastically.', 'Confirmations by text', 'before every visit. Patients confirm with one reply, so you walk into the day knowing who is actually coming instead of finding out at 9am.'],
+      ['Boost your SEO, fast.', 'Google review requests', 'sent automatically after every completed appointment. Review volume is the single biggest lever on where you rank in local search, and most clinics never ask.'],
     ],
   },
   {
     tier: 'Growth',
-    tagline: 'Answer every enquiry, on every channel, within seconds.',
+    tagline: 'No enquiry goes cold and no recall is missed. Every channel answered within seconds.',
     plus: 'Everything in Basic, plus',
     items: [
-      ['Cancel and reschedule by text', 'patients move their own appointment by replying, and your diary updates itself.'],
-      ['Facebook, Instagram and WhatsApp agents', 'patients book, cancel or reschedule straight from Messenger, Instagram or WhatsApp, day or night, and it writes into Fitting Wizard.'],
-      ['Two-way text message agent', 'holds a conversation over SMS and books the patient in, for those who do not use apps.'],
-      ['Email agent', 'reads your clinic inbox, replies and books.'],
-      ['GP & referrer portal', 'so referring GPs and other partners see only your free slots and book the patient themselves. They never see patient information.'],
-      ['Automated recalls', 'patients contacted when a review, device check or HSP voucher is due, checked against Fitting Wizard first so nobody who was just seen gets called.'],
+      ['Never miss an HSP voucher renewal or annual review again.', 'Automated recalls', 'contact pensioner, DVA and private patients when their maintenance renewal, annual review or five-year voucher upgrade is due. Checked against Fitting Wizard first, so nobody who was just seen gets called and nobody due falls through.'],
+      ['Stop wasting ad spend on leads you never reply to.', 'Facebook, Instagram and WhatsApp agents', 'answer and book within seconds of a patient messaging — not the next morning, by which point you have paid for a lead that booked somewhere else.'],
+      ['Stop wasting admin hours on the diary.', 'Cancel, reschedule and two-way text conversations', 'let patients move their own appointment by replying. Your diary updates itself and your reception stops playing phone tag.'],
+      ['Stop losing what is sitting in your inbox.', 'Email agent', 'reads your clinic inbox, replies and books directly from it, so an enquiry sent at 10pm is handled at 10pm.'],
+      ['Turn every referrer into a direct booking channel.', 'Private referral portal', 'GPs, ENTs, aged care homes and corporate partners see only your free slots and book the patient themselves, with no access to patient information.'],
     ],
   },
   {
     tier: 'Premium',
-    tagline: 'Run the whole front office, and see the numbers.',
+    tagline: 'Run the front office like a business you can see, not one you have to guess at.',
     plus: 'Everything in Growth, plus',
     items: [
-      ['Waiting-list backfill', 'when someone cancels, the slot goes straight to your waiting list instead of sitting empty.'],
-      ['Website chat', 'answers common questions and books the appointment.'],
-      ['Payments and deposits', 'take a deposit at booking or send a payment link afterwards.'],
-      ['Reactivation campaigns', 'to an old list, inviting them back for a check.'],
-      ['Owner dashboard', 'revenue month by month, bookings, cancellations, no-shows, devices sold, and which advertising actually brought patients in.'],
+      ['Never leave a cancelled slot empty.', 'Waiting-list backfill', 'offers it straight to your waiting list the moment it opens up, so a late cancellation costs you nothing.'],
+      ['Answer the questions patients ask before they call.', 'Website chat', 'handles common questions and books the appointment itself.'],
+      ['Get paid, and cut no-shows further.', 'Payments and deposits', 'taken at the time of booking.'],
+      ['Bring dormant patients back without a call list.', 'Reactivation campaigns', 'reach an old database in one go, on your terms.'],
+      ['See what is actually working.', 'Owner dashboard', 'shows revenue, bookings, cancellations, no-shows, devices sold and which advertising genuinely brought patients in. A number, not a guess.'],
     ],
     soon: [
-      ['Accounting integration', 'sales pushed from Fitting Wizard into Xero, MYOB or QuickBooks, instead of exporting a file and accepting every invoice by hand.'],
-      ['Paperless forms and signatures', 'consent, HSP and history forms signed on an iPad or by link, filed back into the patient record.'],
+      ['Get hours back every month.', 'Accounting integration', 'pushes sales from Fitting Wizard into Xero, MYOB or QuickBooks, instead of exporting a file and accepting every invoice by hand.'],
+      ['Go paperless without losing anything.', 'Paperless forms and signatures', 'consent, HSP and history forms signed on an iPad or by link, filed straight back into the patient record.'],
     ],
     soonNote: 'Accounting integration and paperless forms are in active development. Premium includes both on release at no extra cost.',
   },
@@ -111,12 +114,6 @@ const ALSO_AVAILABLE = [
       ['Server and network setup', 'remote desktop, cloud or on-premise, after a technical check'],
     ],
   },
-];
-
-const ROADMAP = [
-  ['Medical Objects referral intake', 'Ingests a Medical Objects referral, or a scanned referral letter, and creates the Fitting Wizard record automatically instead of it getting lost in the inbox.'],
-  ['Duplicate prevention & record hygiene', 'A deterministic patient ID built from name and phone number, so two patients with the same name are never merged or mismatched.'],
-  ['Clinical notes capture', 'Integrating with the dictation tool your audiologists already use, so notes file straight into the Fitting Wizard patient record.'],
 ];
 
 const FAQS = [
@@ -309,11 +306,11 @@ const FittingWizardPage = () => {
       <div id="packages" style={{ scrollMarginTop: 60 }} />
       <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
         <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>PACKAGES</div>
-        <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 16px' }}>
-          Three ways to run your front desk.
+        <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 16px', maxWidth: 760 }}>
+          The enquiries you miss tonight don't call back tomorrow.
         </h2>
         <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 16, lineHeight: 1.6, color: muted, maxWidth: 660, margin: '0 auto 56px' }}>
-          Each package builds on the one before it. Scoped to your clinics and quoted on the demo call — no build fee, no setup fee.
+          Every package builds on the one before it. Each is priced against what an unanswered enquiry or an empty slot already costs you — scoped to your clinics and quoted on the demo call.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 16, maxWidth: 1100, margin: '0 auto', textAlign: 'left', alignItems: 'start' }}>
           {PACKAGES.map((pkg) => (
@@ -322,24 +319,28 @@ const FittingWizardPage = () => {
               <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.5, color: muted, margin: '0 0 18px' }}>{pkg.tagline}</p>
               <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 10.5, letterSpacing: '.1em', color: accent, textTransform: 'uppercase', marginBottom: 12 }}>{pkg.plus}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
-                {pkg.items.map(([title, desc], i) => (
+                {pkg.items.map(([hook, feature, desc], i) => (
                   <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                    <span style={{ color: accent, fontWeight: 700, fontSize: 14, lineHeight: 1.4, flexShrink: 0 }}>✓</span>
+                    <span style={{ color: accent, fontWeight: 700, fontSize: 14, lineHeight: 1.45, flexShrink: 0 }}>✓</span>
                     <div>
-                      <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 13.5, fontWeight: 700, color: ink, lineHeight: 1.4 }}>{title}</div>
-                      <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.5, color: muted, margin: '2px 0 0' }}>{desc}</p>
+                      <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 13.5, fontWeight: 700, color: ink, lineHeight: 1.45 }}>{hook}</div>
+                      <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.5, color: muted, margin: '3px 0 0' }}>
+                        <span style={{ color: accent, fontWeight: 600 }}>{feature}</span> {desc}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
               {pkg.soon && (
                 <div style={{ marginTop: 16, paddingTop: 14, borderTop: `1px dashed ${rule}` }}>
-                  {pkg.soon.map(([title, desc], i) => (
+                  {pkg.soon.map(([hook, feature, desc], i) => (
                     <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10 }}>
                       <span style={{ fontSize: 9, color: muted, border: `1px solid ${rule}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace', letterSpacing: '.08em', whiteSpace: 'nowrap', flexShrink: 0, marginTop: 2 }}>SOON</span>
                       <div>
-                        <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 13.5, fontWeight: 700, color: ink, lineHeight: 1.4 }}>{title}</div>
-                        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.5, color: muted, margin: '2px 0 0' }}>{desc}</p>
+                        <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 13.5, fontWeight: 700, color: ink, lineHeight: 1.45 }}>{hook}</div>
+                        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.5, color: muted, margin: '3px 0 0' }}>
+                          <span style={{ color: accent, fontWeight: 600 }}>{feature}</span> {desc}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -418,28 +419,6 @@ const FittingWizardPage = () => {
           </table>
         </div>
         <a href="/demo" style={{ display: 'inline-block', marginTop: 28, fontSize: 12, color: muted, letterSpacing: '.1em', textDecoration: 'none', borderBottom: `1px solid ${accent}`, paddingBottom: 3, fontFamily: '"Geist Mono", monospace' }}>BOOK A DEMO →</a>
-      </Reveal>
-
-      {/* ─── COMING SOON ─── */}
-      <Reveal as="section" style={{ padding: `clamp(40px, 8vw, 64px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
-        <div style={{ fontSize: 11, color: muted, letterSpacing: '.2em', marginBottom: 20, fontFamily: '"Geist Mono", monospace' }}>COMING SOON</div>
-        <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(22px, 4vw, 30px)', fontWeight: 600, letterSpacing: '-0.02em', margin: '0 auto 12px', maxWidth: 600 }}>
-          Launching in the next few weeks.
-        </h2>
-        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.6, color: muted, maxWidth: 560, margin: '0 auto 28px' }}>
-          Everything above is live today. Ask on the demo call for a firm date on these.
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto', textAlign: 'left' }}>
-          {ROADMAP.map(([t, d]) => (
-            <div key={t} style={{ background: 'rgba(14,26,43,.03)', padding: 22 }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
-                <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 15.5, fontWeight: 600, color: muted }}>{t}</div>
-                <span style={{ fontSize: 9, color: muted, border: `1px solid ${rule}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace', letterSpacing: '.08em', whiteSpace: 'nowrap' }}>COMING SOON</span>
-              </div>
-              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.6, color: muted, margin: 0 }}>{d}</p>
-            </div>
-          ))}
-        </div>
       </Reveal>
 
       {/* ─── TRUST ─── */}
