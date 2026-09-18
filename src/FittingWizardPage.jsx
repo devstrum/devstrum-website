@@ -20,14 +20,6 @@ const STEPS = [
   },
 ];
 
-// No pricing on this page by design - it's quoted per practice on the demo call.
-// These describe what a subscription covers, without naming a number.
-const INCLUDED = [
-  ['Text', 'Facebook Messenger, WhatsApp, Instagram, email, SMS and any other channel you choose — answered instantly and booked straight into Fitting Wizard.'],
-  ['Booking portals', 'Public and private online booking off your website, running against the same real availability.'],
-  ['Voice', 'An AI phone receptionist that answers, qualifies and books calls, with a generous monthly call allowance.'],
-];
-
 const CHANNELS = ['Phone', 'Facebook Messenger', 'Website booking', 'Email', 'SMS', 'WhatsApp', 'Instagram', 'GP referral'];
 
 const PROOF_TILES = [
@@ -57,53 +49,66 @@ const COMPARE_ROWS = [
   ['Support in your time zone', '✓', '✓', 'Frequently offshore'],
 ];
 
-// Plugin Catalog - everything listed here is live today; anything not yet
-// built lives in ROADMAP below instead, tagged "coming soon."
-const GROUPS = [
+// Packages - cumulative tiers (Growth = Basic + more, Premium = Growth +
+// more). No pricing on this page by design - quoted per practice on the
+// demo call. Each card ends in a Book a Demo button instead of a price.
+const PACKAGES = [
   {
-    name: 'Answering patients and taking bookings',
+    tier: 'Basic',
+    tagline: 'Get found, get booked, get reviewed.',
+    plus: 'What you get',
     items: [
-      ['A', 'Online Booking Page', 'A booking page on your website showing your real availability. Patients pick a time themselves and it writes straight into Fitting Wizard.'],
-      ['B', 'GP & Referrer Portal', 'Your referring GPs log in, see only your free slots and book the patient themselves. They never see patient information.'],
-      ['C', 'SMS Agent', 'Replies to enquiries over plain text message and books them in, for patients who do not use apps.'],
-      ['D', 'Facebook Messenger Agent', 'Replies to your Facebook ad enquiries within seconds, day or night, and books the appointment.'],
-      ['E', 'WebChat', 'A chat box on your website that answers questions, qualifies the enquiry and books the appointment.'],
-      ['F', 'Instagram Agent', 'The same, for enquiries that come through Instagram.'],
-      ['G', 'WhatsApp Agent', 'The same on WhatsApp, and it can message patients first. We set up your WhatsApp Business account.'],
-      ['H', 'Email Agent', 'Reads your clinic inbox, replies to enquiries and books them in.'],
-      ['I', 'AI Phone Receptionist', 'Answers your phone 24 hours a day, books, reschedules and cancels straight into Fitting Wizard. Passes urgent calls to a person.'],
+      ['Online booking page', 'on your website, showing your real availability. Patients pick a time themselves and it writes straight into Fitting Wizard — including anyone arriving from a paid ad.'],
+      ['Appointment confirmations by text', 'before every visit, so you know who is coming before the day.'],
+      ['Google review requests', 'sent automatically after a completed appointment.'],
     ],
   },
   {
-    name: 'Keeping the diary full',
+    tier: 'Growth',
+    tagline: 'Answer every enquiry, on every channel, within seconds.',
+    plus: 'Everything in Basic, plus',
     items: [
-      ['J', 'Reminders & No-Show Prevention', 'Confirmation requests before the appointment, and any slot that frees up is offered to your waiting list.'],
-      ['K', 'Accurate Recalls', 'Patients contacted when their annual review, device check or HSP voucher is due. Checks Fitting Wizard first so nobody is called who was just seen.'],
-      ['L', 'Google Review Requests', 'Sent automatically after a completed appointment.'],
+      ['Cancel and reschedule by text', 'patients move their own appointment by replying, and your diary updates itself.'],
+      ['Facebook, Instagram and WhatsApp agents', 'patients book, cancel or reschedule straight from Messenger, Instagram or WhatsApp, day or night, and it writes into Fitting Wizard.'],
+      ['Two-way text message agent', 'holds a conversation over SMS and books the patient in, for those who do not use apps.'],
+      ['Email agent', 'reads your clinic inbox, replies and books.'],
+      ['GP & referrer portal', 'so referring GPs and other partners see only your free slots and book the patient themselves. They never see patient information.'],
+      ['Automated recalls', 'patients contacted when a review, device check or HSP voucher is due, checked against Fitting Wizard first so nobody who was just seen gets called.'],
     ],
   },
   {
-    name: 'Paperwork and payments',
+    tier: 'Premium',
+    tagline: 'Run the whole front office, and see the numbers.',
+    plus: 'Everything in Growth, plus',
     items: [
-      ['M', 'Payments & Deposits', 'Take a deposit at booking or send a payment link afterwards.'],
+      ['Waiting-list backfill', 'when someone cancels, the slot goes straight to your waiting list instead of sitting empty.'],
+      ['Website chat', 'answers common questions and books the appointment.'],
+      ['Payments and deposits', 'take a deposit at booking or send a payment link afterwards.'],
+      ['Reactivation campaigns', 'to an old list, inviting them back for a check.'],
+      ['Owner dashboard', 'revenue month by month, bookings, cancellations, no-shows, devices sold, and which advertising actually brought patients in.'],
     ],
+    soon: [
+      ['Accounting integration', 'sales pushed from Fitting Wizard into Xero, MYOB or QuickBooks, instead of exporting a file and accepting every invoice by hand.'],
+      ['Paperless forms and signatures', 'consent, HSP and history forms signed on an iPad or by link, filed back into the patient record.'],
+    ],
+    soonNote: 'Accounting integration and paperless forms are in active development. Premium includes both on release at no extra cost.',
+  },
+];
+
+// Sits outside the tiered packages above - priced separately once we know
+// what the work actually involves.
+const ALSO_AVAILABLE = [
+  {
+    title: 'AI Phone Receptionist',
+    desc: 'Answers your phone around the clock, books, reschedules and cancels straight into Fitting Wizard, and passes urgent calls to a person. Priced on call volume, so it sits outside the packages.',
   },
   {
-    name: 'Practice-wide',
+    title: 'Website, email and technical work',
     items: [
-      ['N', 'Reactivation Campaigns', 'Message an old list in one go, for example everyone from last year, inviting them back for a check.'],
-      ['O', 'Owner Dashboard', 'Revenue month by month, bookings, cancellations, no-shows, devices sold, and which advertising actually brought patients in.'],
-    ],
-  },
-  {
-    name: 'Other things we do',
-    note: "Scoped and quoted separately, once we know what your site or inbox actually needs.",
-    items: [
-      ['P', 'Paperless Forms & Signatures', "Consent forms, HSP and NDIS paperwork, quotes and history forms signed on an iPad or by link and filed back into the patient record. Every practice's forms are different, so we design yours with you.", true],
-      ['Q', 'Accounting Integration', 'Sales pushed from Fitting Wizard straight into Xero, MYOB or QuickBooks, so nobody is exporting a template and re-accepting every invoice by hand.', true],
-      ['R', 'Website Rebuild', 'If your website is dated, we rebuild it with the booking system built in, so patients can book directly from your homepage.'],
-      ['S', 'Server & Network Setup', 'If Fitting Wizard runs on a remote desktop server, a home network or anything non-standard, we do a technical check first and quote the connection work.'],
-      ['T', 'Email & IT Support', 'Fixing email that bounces or goes missing, setting up a proper business email address, and looking after it from there.'],
+      ['Website fixes or rebuild', 'audited first, then quoted'],
+      ['Maintenance, SEO and blog posts', 'fixed monthly retainer'],
+      ['Email and IT support', 'fixing email that bounces or goes missing, setting up a proper business address, and looking after it from there'],
+      ['Server and network setup', 'remote desktop, cloud or on-premise, after a technical check'],
     ],
   },
 ];
@@ -298,23 +303,86 @@ const FittingWizardPage = () => {
         </div>
       </Reveal>
 
-      {/* ─── WHAT'S INCLUDED ─── */}
-      {/* Deliberately no prices - quoted per practice on the demo call. */}
+      {/* ─── PACKAGES ─── */}
+      {/* Deliberately no prices - quoted per practice on the demo call. Each
+          card ends in a Book a Demo button instead of a number. */}
+      <div id="packages" style={{ scrollMarginTop: 60 }} />
       <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
-        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>WHAT'S INCLUDED</div>
+        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>PACKAGES</div>
         <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 16px' }}>
-          One monthly fee, <span style={{ color: accent }}>everything included.</span>
+          Three ways to run your front desk.
         </h2>
         <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 16, lineHeight: 1.6, color: muted, maxWidth: 660, margin: '0 auto 56px' }}>
-          Installation, hosting, AI, integrations and support — no build fee and no setup fee for Fitting Wizard practices. Scoped to the number of clinic locations you run, and quoted on the demo call.
+          Each package builds on the one before it. Scoped to your clinics and quoted on the demo call — no build fee, no setup fee.
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 1000, margin: '0 auto', textAlign: 'left' }}>
-          {INCLUDED.map(([t, d]) => (
-            <div key={t} style={{ background: bg, padding: 32 }}>
-              <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 18, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 12 }}>{t}</div>
-              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.65, color: muted, margin: 0 }}>{d}</p>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 16, maxWidth: 1100, margin: '0 auto', textAlign: 'left', alignItems: 'start' }}>
+          {PACKAGES.map((pkg) => (
+            <div key={pkg.tier} style={{ background: bg, border: `1px solid ${rule}`, borderRadius: 4, padding: 28, display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 6 }}>{pkg.tier}</div>
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.5, color: muted, margin: '0 0 18px' }}>{pkg.tagline}</p>
+              <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 10.5, letterSpacing: '.1em', color: accent, textTransform: 'uppercase', marginBottom: 12 }}>{pkg.plus}</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
+                {pkg.items.map(([title, desc], i) => (
+                  <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                    <span style={{ color: accent, fontWeight: 700, fontSize: 14, lineHeight: 1.4, flexShrink: 0 }}>✓</span>
+                    <div>
+                      <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 13.5, fontWeight: 700, color: ink, lineHeight: 1.4 }}>{title}</div>
+                      <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.5, color: muted, margin: '2px 0 0' }}>{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {pkg.soon && (
+                <div style={{ marginTop: 16, paddingTop: 14, borderTop: `1px dashed ${rule}` }}>
+                  {pkg.soon.map(([title, desc], i) => (
+                    <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10 }}>
+                      <span style={{ fontSize: 9, color: muted, border: `1px solid ${rule}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace', letterSpacing: '.08em', whiteSpace: 'nowrap', flexShrink: 0, marginTop: 2 }}>SOON</span>
+                      <div>
+                        <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 13.5, fontWeight: 700, color: ink, lineHeight: 1.4 }}>{title}</div>
+                        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.5, color: muted, margin: '2px 0 0' }}>{desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 12, lineHeight: 1.5, color: muted, margin: '4px 0 0', fontStyle: 'italic' }}>{pkg.soonNote}</p>
+                </div>
+              )}
+              <a href="/demo" style={{ textDecoration: 'none', marginTop: 22 }}>
+                <button style={{ width: '100%', padding: '14px 18px', background: ink, color: bg, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.12em', fontFamily: '"Geist Mono", monospace', cursor: 'pointer' }}>
+                  BOOK A DEMO →
+                </button>
+              </a>
             </div>
           ))}
+        </div>
+      </Reveal>
+
+      {/* ─── ALSO AVAILABLE, QUOTED SEPARATELY ─── */}
+      <Reveal as="section" style={{ padding: `clamp(40px, 8vw, 64px) ${PAD_X}`, borderTop: `1px solid ${ink}` }}>
+        <div style={{ maxWidth: 900, margin: '0 auto' }}>
+          <div style={{ fontSize: 11, color: muted, letterSpacing: '.2em', marginBottom: 24, fontFamily: '"Geist Mono", monospace', textAlign: 'center' }}>ALSO AVAILABLE, QUOTED SEPARATELY</div>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: 16, textAlign: 'left' }}>
+            {ALSO_AVAILABLE.map((block) => (
+              <div key={block.title} style={{ background: bg, border: `1px solid ${rule}`, borderRadius: 4, padding: 26 }}>
+                <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 600, letterSpacing: '-0.01em', marginBottom: 10 }}>{block.title}</div>
+                {block.desc && (
+                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.6, color: muted, margin: 0 }}>{block.desc}</p>
+                )}
+                {block.items && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    {block.items.map(([title, desc], i) => (
+                      <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                        <span style={{ color: accent, fontWeight: 700, fontSize: 14, lineHeight: 1.4, flexShrink: 0 }}>✓</span>
+                        <div>
+                          <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 13.5, fontWeight: 700, color: ink, lineHeight: 1.4 }}>{title}</div>
+                          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.5, color: muted, margin: '2px 0 0' }}>{desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </Reveal>
 
@@ -349,37 +417,8 @@ const FittingWizardPage = () => {
             </tbody>
           </table>
         </div>
-        <a href="#catalogue" style={{ display: 'inline-block', marginTop: 28, fontSize: 12, color: muted, letterSpacing: '.1em', textDecoration: 'none', borderBottom: `1px solid ${accent}`, paddingBottom: 3, fontFamily: '"Geist Mono", monospace' }}>SEE THE FULL PLUGIN CATALOG →</a>
+        <a href="/demo" style={{ display: 'inline-block', marginTop: 28, fontSize: 12, color: muted, letterSpacing: '.1em', textDecoration: 'none', borderBottom: `1px solid ${accent}`, paddingBottom: 3, fontFamily: '"Geist Mono", monospace' }}>BOOK A DEMO →</a>
       </Reveal>
-
-      {/* ─── PLUGIN CATALOG ─── */}
-      <div id="catalogue" style={{ scrollMarginTop: 60 }} />
-      {GROUPS.map((group) => (
-        <Reveal as="section" key={group.name} style={{ padding: `clamp(40px, 8vw, 64px) ${PAD_X}`, borderTop: `1px solid ${ink}` }}>
-          <div style={{ maxWidth: 900, margin: '0 auto' }}>
-            <div style={{ fontSize: 11, color: accent, letterSpacing: '.2em', marginBottom: group.note ? 10 : 24, fontFamily: '"Geist Mono", monospace' }}>{group.name.toUpperCase()}</div>
-            {group.note && (
-              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.6, color: muted, margin: '0 0 24px' }}>{group.note}</p>
-            )}
-            <div style={{ display: 'grid', gap: 1, background: rule, border: `1px solid ${rule}` }}>
-              {group.items.map(([k, n, d, askUs]) => (
-                <div key={k} id={`plugin-${k.toLowerCase()}`} style={{ background: bg, padding: isMobile ? '16px 14px' : '18px 22px', display: 'flex', gap: 18, scrollMarginTop: 80, textAlign: 'left' }}>
-                  <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 12, color: accent, flexShrink: 0, width: 18, paddingTop: 3 }}>{k}</div>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 5 }}>
-                      <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 600, letterSpacing: '-0.01em' }}>{n}</div>
-                      {askUs && (
-                        <span style={{ fontSize: 9, color: muted, border: `1px solid ${rule}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace', letterSpacing: '.08em', whiteSpace: 'nowrap' }}>ASK US</span>
-                      )}
-                    </div>
-                    <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.6, color: muted, margin: 0 }}>{d}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      ))}
 
       {/* ─── COMING SOON ─── */}
       <Reveal as="section" style={{ padding: `clamp(40px, 8vw, 64px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
