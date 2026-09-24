@@ -64,8 +64,11 @@ const PACKAGES = [
     items: [
       ['Stop the logistical overload.', 'Online booking page', 'on your website showing your real availability. Patients book themselves in at any hour, including anyone arriving from a paid ad, so your front desk stops being the bottleneck between an interested patient and a booked appointment.'],
       ['Reduce no-shows drastically.', 'Confirmations by text', 'before every visit. Patients confirm with one reply, so you walk into the day knowing who is actually coming instead of finding out at 9am.'],
+    ],
+    soon: [
       ['Boost your SEO, fast.', 'Google review requests', 'sent automatically after every completed appointment. Review volume is the single biggest lever on where you rank in local search, and most clinics never ask.'],
     ],
+    soonNote: 'Google review requests are in active development. Basic includes it on release at no extra cost.',
   },
   {
     tier: 'Growth',
