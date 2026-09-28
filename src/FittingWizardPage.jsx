@@ -87,17 +87,17 @@ const PACKAGES = [
     tagline: 'Run the front office like a business you can see, not one you have to guess at.',
     plus: 'Everything in Growth, plus',
     items: [
-      ['Never leave a cancelled slot empty.', 'Waiting-list backfill', 'offers it straight to your waiting list the moment it opens up, so a late cancellation costs you nothing.'],
       ['Answer the questions patients ask before they call.', 'Website chat', 'handles common questions and books the appointment itself.'],
       ['Get paid, and cut no-shows further.', 'Payments and deposits', 'taken at the time of booking.'],
       ['Bring dormant patients back without a call list.', 'Reactivation campaigns', 'reach an old database in one go, on your terms.'],
       ['See what is actually working.', 'Owner dashboard', 'shows revenue, bookings, cancellations, no-shows, devices sold and which advertising genuinely brought patients in. A number, not a guess.'],
     ],
     soon: [
+      ['Never leave a cancelled slot empty.', 'Waiting-list backfill', 'offers it straight to your waiting list the moment it opens up, so a late cancellation costs you nothing.'],
       ['Get hours back every month.', 'Accounting integration', 'pushes sales from Fitting Wizard into Xero, MYOB or QuickBooks, instead of exporting a file and accepting every invoice by hand.'],
       ['Go paperless without losing anything.', 'Paperless forms and signatures', 'consent, HSP and history forms signed on an iPad or by link, filed straight back into the patient record.'],
     ],
-    soonNote: 'Accounting integration and paperless forms are in active development. Premium includes both on release at no extra cost.',
+    soonNote: 'Waiting-list backfill, accounting integration and paperless forms are in active development. Premium includes all three on release at no extra cost.',
   },
 ];
 
