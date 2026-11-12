@@ -91,22 +91,17 @@ const FWC_SOON = [
   ['See what is actually working.', 'Owner dashboard', 'revenue, bookings, cancellations, no-shows, devices sold and which advertising genuinely brought patients in. A number, not a guess.'],
 ];
 
-// Sits outside the tiered packages above - priced separately once we know
-// what the work actually involves.
-const ALSO_AVAILABLE = [
-  {
-    title: 'AI Phone Receptionist',
-    desc: 'Answers your phone around the clock, books, reschedules and cancels straight into Fitting Wizard, and passes urgent calls to a person. Priced on call volume, so it sits outside the packages.',
-  },
-  {
-    title: 'Website, email and technical work',
-    items: [
-      ['Website fixes or rebuild', 'audited first, then quoted'],
-      ['Maintenance, SEO and blog posts', 'fixed monthly retainer'],
-      ['Email and IT support', 'fixing email that bounces or goes missing, setting up a proper business address, and looking after it from there'],
-      ['Server and network setup', 'remote desktop, cloud or on-premise, after a technical check'],
-    ],
-  },
+// Add-ons - can be added to either Basic or Growth, quoted separately once
+// we know what the work actually involves. Shown in one box under the two
+// package cards.
+const ADD_ONS = [
+  ['AI Phone Receptionist', 'Answers your phone around the clock, books, reschedules and cancels straight into Fitting Wizard, and passes urgent calls to a person. Priced on call volume.'],
+  ['Payments and deposits', 'Take a deposit at the time of booking or send a payment link afterwards, so you get paid and cut no-shows further.'],
+  ['Website fixes', 'Broken pages, slow loading or a booking button that goes nowhere, audited first, then quoted.'],
+  ['Website rebuild', 'A dated website rebuilt with the booking system built in, so patients book straight from your homepage.'],
+  ['SEO, maintenance and blog posts', 'Keeping your site fast, up to date and ranking in local search, on a fixed monthly retainer.'],
+  ['Email and IT support', 'Fixing email that bounces or goes missing, setting up a proper business address, and looking after it from there.'],
+  ['Server and network setup', 'Remote desktop, cloud or on-premise, including non-standard Fitting Wizard setups, after a technical check.'],
 ];
 
 const FAQS = [
@@ -348,6 +343,25 @@ const FittingWizardPage = () => {
             </div>
           ))}
         </div>
+
+        {/* Add-ons - one horizontal box under both package cards */}
+        <div style={{ maxWidth: 900, margin: '16px auto 0', border: `1px solid ${rule}`, borderRadius: 4, padding: isMobile ? 24 : '28px 32px', textAlign: 'left', background: 'rgba(14,26,43,.025)' }}>
+          <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'flex-start' : 'baseline', gap: 6, marginBottom: 20 }}>
+            <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em' }}>Add-ons</div>
+            <div style={{ fontFamily: '"Geist Mono", monospace', fontSize: 10.5, letterSpacing: '.1em', color: accent }}>ADD TO BASIC OR GROWTH · QUOTED SEPARATELY</div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: isMobile ? 14 : '16px 32px' }}>
+            {ADD_ONS.map(([title, desc]) => (
+              <div key={title} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                <span style={{ color: accent, fontWeight: 700, fontSize: 14, lineHeight: 1.4, flexShrink: 0 }}>+</span>
+                <div>
+                  <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 13.5, fontWeight: 700, color: ink, lineHeight: 1.4 }}>{title}</div>
+                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.5, color: muted, margin: '2px 0 0' }}>{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </Reveal>
 
       {/* ─── COMING IN FITTING WIZARD CLOUD ─── */}
@@ -383,36 +397,6 @@ const FittingWizardPage = () => {
               JOIN THE WAITLIST →
             </button>
           </a>
-        </div>
-      </Reveal>
-
-      {/* ─── ALSO AVAILABLE, QUOTED SEPARATELY ─── */}
-      <Reveal as="section" style={{ padding: `clamp(40px, 8vw, 64px) ${PAD_X}`, borderTop: `1px solid ${ink}` }}>
-        <div style={{ maxWidth: 900, margin: '0 auto' }}>
-          <div style={{ fontSize: 11, color: muted, letterSpacing: '.2em', marginBottom: 24, fontFamily: '"Geist Mono", monospace', textAlign: 'center' }}>ALSO AVAILABLE, QUOTED SEPARATELY</div>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: 16, textAlign: 'left' }}>
-            {ALSO_AVAILABLE.map((block) => (
-              <div key={block.title} style={{ background: bg, border: `1px solid ${rule}`, borderRadius: 4, padding: 26 }}>
-                <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 600, letterSpacing: '-0.01em', marginBottom: 10 }}>{block.title}</div>
-                {block.desc && (
-                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, lineHeight: 1.6, color: muted, margin: 0 }}>{block.desc}</p>
-                )}
-                {block.items && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                    {block.items.map(([title, desc], i) => (
-                      <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                        <span style={{ color: accent, fontWeight: 700, fontSize: 14, lineHeight: 1.4, flexShrink: 0 }}>✓</span>
-                        <div>
-                          <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 13.5, fontWeight: 700, color: ink, lineHeight: 1.4 }}>{title}</div>
-                          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, lineHeight: 1.5, color: muted, margin: '2px 0 0' }}>{desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
       </Reveal>
 
