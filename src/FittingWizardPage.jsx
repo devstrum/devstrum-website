@@ -49,9 +49,9 @@ const COMPARE_ROWS = [
   ['Support in your time zone', '✓', '✓', 'Frequently offshore'],
 ];
 
-// Packages - cumulative tiers (Growth = Basic + more, Premium = Growth +
-// more). No pricing on this page by design - quoted per practice on the
-// demo call. Each card ends in a Book a Demo button instead of a price.
+// Packages - two cumulative tiers (Growth = Basic + more). No pricing on
+// this page by design - quoted per practice on the demo call. Each card
+// ends in a Book a Demo button instead of a price.
 // Each item is [what it costs you if you don't have this, the feature that
 // fixes it, how]. The first part carries the weight - a practice owner
 // weighs the subscription cost against what happens if they do nothing,
@@ -63,42 +63,32 @@ const PACKAGES = [
     plus: 'What this changes',
     items: [
       ['Stop the logistical overload.', 'Online booking page', 'on your website showing your real availability. Patients book themselves in at any hour, including anyone arriving from a paid ad, so your front desk stops being the bottleneck between an interested patient and a booked appointment.'],
+      ['Turn every referrer into a direct booking channel.', 'Private referral portal', 'GPs, ENTs, aged care homes and corporate partners see only your free slots and book the patient themselves, with no access to patient information.'],
       ['Reduce no-shows drastically.', 'Confirmations by text', 'before every visit. Patients confirm with one reply, so you walk into the day knowing who is actually coming instead of finding out at 9am.'],
-    ],
-    soon: [
       ['Boost your SEO, fast.', 'Google review requests', 'sent automatically after every completed appointment. Review volume is the single biggest lever on where you rank in local search, and most clinics never ask.'],
     ],
-    soonNote: 'Google review requests are in active development. Basic includes it on release at no extra cost.',
   },
   {
     tier: 'Growth',
     tagline: 'No enquiry goes cold and no recall is missed. Every channel answered within seconds.',
     plus: 'Everything in Basic, plus',
     items: [
-      ['Never miss an HSP voucher renewal or annual review again.', 'Automated recalls', 'contact pensioner, DVA and private patients when their maintenance renewal, annual review or five-year voucher upgrade is due. Checked against Fitting Wizard first, so nobody who was just seen gets called and nobody due falls through.'],
-      ['Stop wasting ad spend on leads you never reply to.', 'Facebook, Instagram and WhatsApp agents', 'answer and book within seconds of a patient messaging — not the next morning, by which point you have paid for a lead that booked somewhere else.'],
+      ['Never miss an HSP voucher renewal, annual review or lapsed patient again.', 'Automated recall and reactivation campaigns', 'contact pensioner, DVA and private patients when their maintenance renewal, annual review or five-year voucher upgrade is due, and bring dormant patients in your database back in one go. Checked against Fitting Wizard first, so nobody who was just seen gets contacted and nobody due falls through.'],
+      ['Stop wasting ad spend on leads you never reply to.', 'Facebook, Instagram, WhatsApp and email agents', 'answer and book within seconds of a patient messaging or emailing, at any hour — not the next morning, by which point you have paid for a lead that booked somewhere else.'],
       ['Stop wasting admin hours on the diary.', 'Cancel, reschedule and two-way text conversations', 'let patients move their own appointment by replying. Your diary updates itself and your reception stops playing phone tag.'],
-      ['Stop losing what is sitting in your inbox.', 'Email agent', 'reads your clinic inbox, replies and books directly from it, so an enquiry sent at 10pm is handled at 10pm.'],
-      ['Turn every referrer into a direct booking channel.', 'Private referral portal', 'GPs, ENTs, aged care homes and corporate partners see only your free slots and book the patient themselves, with no access to patient information.'],
     ],
   },
-  {
-    tier: 'Premium',
-    tagline: 'Run the front office like a business you can see, not one you have to guess at.',
-    plus: 'Everything in Growth, plus',
-    items: [
-      ['Answer the questions patients ask before they call.', 'Website chat', 'handles common questions and books the appointment itself.'],
-      ['Get paid, and cut no-shows further.', 'Payments and deposits', 'taken at the time of booking.'],
-      ['Bring dormant patients back without a call list.', 'Reactivation campaigns', 'reach an old database in one go, on your terms.'],
-      ['See what is actually working.', 'Owner dashboard', 'shows revenue, bookings, cancellations, no-shows, devices sold and which advertising genuinely brought patients in. A number, not a guess.'],
-    ],
-    soon: [
-      ['Never leave a cancelled slot empty.', 'Waiting-list backfill', 'offers it straight to your waiting list the moment it opens up, so a late cancellation costs you nothing.'],
-      ['Get hours back every month.', 'Accounting integration', 'pushes sales from Fitting Wizard into Xero, MYOB or QuickBooks, instead of exporting a file and accepting every invoice by hand.'],
-      ['Go paperless without losing anything.', 'Paperless forms and signatures', 'consent, HSP and history forms signed on an iPad or by link, filed straight back into the patient record.'],
-    ],
-    soonNote: 'Waiting-list backfill, accounting integration and paperless forms are in active development. Premium includes all three on release at no extra cost.',
-  },
+];
+
+// In development as part of Fitting Wizard Cloud (fittingwizard.cloud).
+// Not sold in the packages above. Public timing is only "founding member
+// waitlist open, launching Q1 2027" - don't publish other dates here.
+const FWC_URL = 'https://fittingwizard.cloud';
+const FWC_SOON = [
+  ['Never leave a cancelled slot empty.', 'Waiting-list backfill', 'offers a cancelled slot straight to your waiting list the moment it opens up, so a late cancellation costs you nothing.'],
+  ['Get hours back every month.', 'Accounting integration', 'pushes sales into Xero, MYOB or QuickBooks, instead of exporting a file and accepting every invoice by hand.'],
+  ['Go paperless without losing anything.', 'Paperless forms and signatures', 'consent, HSP and history forms signed on an iPad or by link, filed straight back into the patient record.'],
+  ['See what is actually working.', 'Owner dashboard', 'revenue, bookings, cancellations, no-shows, devices sold and which advertising genuinely brought patients in. A number, not a guess.'],
 ];
 
 // Sits outside the tiered packages above - priced separately once we know
@@ -315,7 +305,7 @@ const FittingWizardPage = () => {
         <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 16, lineHeight: 1.6, color: muted, maxWidth: 660, margin: '0 auto 56px' }}>
           Every package builds on the one before it. Each is priced against what an unanswered enquiry or an empty slot already costs you — scoped to your clinics and quoted on the demo call.
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 16, maxWidth: 1100, margin: '0 auto', textAlign: 'left', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: 16, maxWidth: 900, margin: '0 auto', textAlign: 'left', alignItems: 'start' }}>
           {PACKAGES.map((pkg) => (
             <div key={pkg.tier} style={{ background: bg, border: `1px solid ${rule}`, borderRadius: 4, padding: 28, display: 'flex', flexDirection: 'column', height: '100%' }}>
               <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 6 }}>{pkg.tier}</div>
@@ -357,6 +347,42 @@ const FittingWizardPage = () => {
               </a>
             </div>
           ))}
+        </div>
+      </Reveal>
+
+      {/* ─── COMING IN FITTING WIZARD CLOUD ─── */}
+      <Reveal as="section" style={{ padding: `clamp(48px, 10vw, 96px) ${PAD_X}`, borderTop: `1px solid ${ink}`, textAlign: 'center' }}>
+        <div style={{ fontSize: 11, color: accent, letterSpacing: '.3em', marginBottom: 16 }}>IN DEVELOPMENT · FITTING WIZARD CLOUD</div>
+        <h2 style={{ fontFamily: '"Geist", sans-serif', fontSize: 'clamp(28px, 6vw, 48px)', fontWeight: 600, letterSpacing: '-0.04em', margin: '0 auto 16px', maxWidth: 760 }}>
+          What we are building next.
+        </h2>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 16, lineHeight: 1.6, color: muted, maxWidth: 660, margin: '0 auto 48px' }}>
+          These are in active development as part of Fitting Wizard Cloud, the full practice management system we are building for audiology clinics.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: 1, background: rule, border: `1px solid ${rule}`, maxWidth: 900, margin: '0 auto', textAlign: 'left' }}>
+          {FWC_SOON.map(([hook, feature, desc]) => (
+            <div key={feature} style={{ background: bg, padding: 28 }}>
+              <span style={{ display: 'inline-block', fontSize: 9, color: muted, border: `1px solid ${rule}`, borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace', letterSpacing: '.08em', marginBottom: 12 }}>SOON</span>
+              <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 17, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 8 }}>{hook}</div>
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.6, color: muted, margin: 0 }}>
+                <span style={{ color: accent, fontWeight: 600 }}>{feature}</span> {desc}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div style={{ background: ink, color: bg, maxWidth: 900, margin: '16px auto 0', padding: isMobile ? 28 : '32px 36px', textAlign: 'left', display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: 24, alignItems: isMobile ? 'flex-start' : 'center', justifyContent: 'space-between' }}>
+          <div>
+            <span style={{ display: 'inline-block', fontSize: 9, color: bg, border: '1px solid rgba(255,255,255,.35)', borderRadius: 3, padding: '2px 6px', fontFamily: '"Geist Mono", monospace', letterSpacing: '.08em', marginBottom: 12 }}>SOON</span>
+            <div style={{ fontFamily: '"Geist", sans-serif', fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', marginBottom: 8 }}>The full Fitting Wizard Cloud system</div>
+            <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', margin: 0, maxWidth: 520 }}>
+              An AI practice management system built for Australian audiology. Founding member waitlist open now, launching Q1 2027.
+            </p>
+          </div>
+          <a href={FWC_URL} target="_blank" rel="noopener" style={{ textDecoration: 'none', flexShrink: 0 }}>
+            <button style={{ padding: '16px 22px', background: bg, color: ink, border: 0, fontSize: 12, fontWeight: 600, letterSpacing: '.12em', fontFamily: '"Geist Mono", monospace', cursor: 'pointer' }}>
+              JOIN THE WAITLIST →
+            </button>
+          </a>
         </div>
       </Reveal>
 
